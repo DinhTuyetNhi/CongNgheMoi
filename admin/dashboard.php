@@ -82,7 +82,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                             <a class="nav-link" href="products.php">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="account.php">Account</a>
+                            <a class="nav-link" href="chat.php">Chăm sóc khách hàng</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="add_product.php">Add New Product</a>
