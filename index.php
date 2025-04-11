@@ -396,6 +396,67 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+    <!-- Chatbot Icon -->
+    <div id="chatbot-icon" onclick="toggleChat()">
+        <i class='far fa-comment-dots'></i>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div id="chatbot-window">
+    <div id="chatbot-header">
+        <span>Trợ lý giày ảo 👟</span>
+        <button onclick="toggleChat()">✖</button>
+    </div>
+    <div id="chatbot-body">
+        <div class="bot-message">Chào bạn! Mình là Trợ lý giày ảo 👟.<br>Bạn cần tư vấn mua giày gì hôm nay?</div>
+        <!-- Tin nhắn sẽ thêm ở đây bằng JS -->
+    </div>
+    <div id="chatbot-input">
+        <input type="text" id="user-input" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+    </div>
+    
+    <script>
+
+        function toggleChat() {
+        const chatWindow = document.getElementById("chatbot-window");
+        chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+        }
+
+        function sendMessage() {
+        const input = document.getElementById("user-input");
+        const message = input.value.trim();
+        if (message === "") return;
+
+        const chatBody = document.getElementById("chatbot-body");
+
+        // Hiển thị tin nhắn người dùng
+        const userMsg = document.createElement("div");
+        userMsg.textContent = message;
+        userMsg.style.textAlign = "right";
+        userMsg.style.margin = "10px 0";
+        chatBody.appendChild(userMsg);
+
+        // Bot phản hồi đơn giản
+        const botMsg = document.createElement("div");
+        botMsg.className = "bot-message";
+        botMsg.textContent = "Cảm ơn bạn! Chúng tôi sẽ tư vấn phù hợp với nhu cầu của bạn.";
+        chatBody.appendChild(botMsg);
+
+        chatBody.scrollTop = chatBody.scrollHeight; // Cuộn xuống dưới
+        input.value = ""; // Reset input
+        }
+
+        function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+        }
+
+
+    </script>
+
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
