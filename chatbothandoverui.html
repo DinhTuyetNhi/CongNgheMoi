@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot & Nhân viên hỗ trợ</title>
+  <style>
+    body { font-family: Arial; display: flex; gap: 50px; }
+    #chatbot, #staff-panel { width: 45%; border: 1px solid #ccc; padding: 15px; border-radius: 10px; }
+    #chatbot-body, #messages { height: 300px; overflow-y: auto; border: 1px solid #eee; padding: 10px; margin-bottom: 10px; background: #f9f9f9; }
+    .bot-message { color: blue; }
+    .staff-message { color: green; }
+    .user-message { text-align: right; color: black; }
+    .session-item { cursor: pointer; padding: 5px; margin-bottom: 5px; background: #eee; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<div id="chatbot">
+  <h3>Khách hàng - Chatbot</h3>
+  <div id="chatbot-body"></div>
+  <input type="text" id="user-input" placeholder="Nhập câu hỏi..."/>
+  <button onclick="sendMessage()">Gửi</button>
+</div>
+
+<div id="staff-panel">
+  <h3>Nhân viên hỗ trợ</h3>
+  <div id="pending-sessions"></div>
+  <div id="chat-detail" style="display: none;">
+    <h4>Chi tiết phiên chat</h4>
+    <div id="messages"></div>
+    <textarea id="staff-reply" placeholder="Phản hồi..."></textarea>
+    <button onclick="sendStaffReply()">Gửi phản hồi</button>
+  </div>
+</div>
+
+<script>
+  let sessionId = 1; // session giả định
+
+  function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatBody = document.getElementById("chatbot-body");
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.textContent = message;
+    chatBody.appendChild(userMsg);
+
+    fetch('http://localhost/project3/project/api/chatbot.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ message: message, session_id: sessionId })
+    })
+    .then(res => res.json())
+    .then(data => {
+      const botMsg = document.createElement("div");
+      botMsg.className = "bot-message";
+      botMsg.textContent = data.reply;
+      chatBody.appendChild(botMsg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    })
+    .catch(error => {
+      console.error("Lỗi fetch:", error);
+      const err = document.createElement("div");
+      err.className = "bot-message";
+      err.textContent = "Lỗi kết nối đến máy chủ.";
+      chatBody.appendChild(err);
+    });
+
+    input.value = "";
+  }
+
+  function loadPendingSessions() {
+    fetch('http://localhost/project3/project/api/get_pending_sessions.php')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("pending-sessions");
+        container.innerHTML = "<h4>Phiên cần hỗ trợ:</h4>";
+        data.forEach(session => {
+          const div = document.createElement("div");
+          div.className = "session-item";
+          div.textContent = `Phiên ${session.session_id}`;
+          div.onclick = () => loadChatDetail(session.session_id);
+          container.appendChild(div);
+        });
+      });
+  }
+
+  function loadChatDetail(session_id) {
+    document.getElementById("chat-detail").style.display = "block";
+    window.currentSessionId = session_id;
+
+    fetch(`http://localhost/project3/project/api/get_chat_messages.php?session_id=${session_id}`)
+      .then(res => res.json())
+      .then(messages => {
+        const container = document.getElementById("messages");
+        container.innerHTML = "";
+        messages.forEach(msg => {
+          const line = document.createElement("div");
+          line.className = msg.sender + "-message";
+          line.textContent = `[${msg.sender}] ${msg.message}`;
+          container.appendChild(line);
+        });
+        container.scrollTop = container.scrollHeight;
+      });
+  }
+
+  function sendStaffReply() {
+    const msg = document.getElementById("staff-reply").value.trim();
+    if (!msg) return;
+
+    fetch('http://localhost/project3/project/api/reply_from_staff.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: window.currentSessionId, staff_id: 1, message: msg })
+    })
+    .then(res => res.json())
+    .then(() => {
+      document.getElementById("staff-reply").value = "";
+      loadChatDetail(window.currentSessionId);
+    });
+  }
+
+  // Load ban đầu
+  loadPendingSessions();
+  setInterval(loadPendingSessions, 10000); // cập nhật mỗi 10s
+</script>
+
+</body>
+</html>

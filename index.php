@@ -412,50 +412,112 @@
         <!-- Tin nhắn sẽ thêm ở đây bằng JS -->
     </div>
     <div id="chatbot-input">
-        <input type="text" id="user-input" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)">
+    <input type="text" id="user-input" onkeypress="handleKeyPress(event)" placeholder="Nhập tin nhắn...">
         <button onclick="sendMessage()">Gửi</button>
     </div>
     </div>
     
     <script>
+function toggleChat() {
+    const chatWindow = document.getElementById("chatbot-window");
+    chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+}
 
-        function toggleChat() {
-        const chatWindow = document.getElementById("chatbot-window");
-        chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+
+let lastMessageId = 0;
+const sessionId = 1; // session giả để test
+
+function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (message === "") return;
+
+    const chatBody = document.getElementById("chatbot-body");
+
+    // Hiển thị tin nhắn người dùng ngay lập tức
+    const userMsg = document.createElement("div");
+    userMsg.textContent = message;
+    userMsg.className = "user-message";
+    userMsg.style.textAlign = "right";
+    chatBody.appendChild(userMsg);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    fetch('http://localhost/project3/project/api/chatbot.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            message: message,
+            session_id: sessionId
+        })
+    })
+    .then(async response => {
+        const text = await response.text();
+        try {
+            const data = JSON.parse(text);
+            if (data.error) throw new Error(data.error);
+            return data;
+        } catch (e) {
+            throw new Error("Phản hồi không hợp lệ từ server: " + text);
         }
-
-        function sendMessage() {
-        const input = document.getElementById("user-input");
-        const message = input.value.trim();
-        if (message === "") return;
-
-        const chatBody = document.getElementById("chatbot-body");
-
-        // Hiển thị tin nhắn người dùng
-        const userMsg = document.createElement("div");
-        userMsg.textContent = message;
-        userMsg.style.textAlign = "right";
-        userMsg.style.margin = "10px 0";
-        chatBody.appendChild(userMsg);
-
-        // Bot phản hồi đơn giản
+    })
+    .then(data => {
         const botMsg = document.createElement("div");
         botMsg.className = "bot-message";
-        botMsg.textContent = "Cảm ơn bạn! Chúng tôi sẽ tư vấn phù hợp với nhu cầu của bạn.";
+        botMsg.textContent = data.reply;
         chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    })
+    .catch(error => {
+        console.error("Lỗi fetch: ", error);
+        const errorMsg = document.createElement("div");
+        errorMsg.className = "bot-message";
+        errorMsg.textContent = "Lỗi: " + error.message;
+        chatBody.appendChild(errorMsg);
+    });
 
-        chatBody.scrollTop = chatBody.scrollHeight; // Cuộn xuống dưới
-        input.value = ""; // Reset input
-        }
+    input.value = "";
+}
 
-        function handleKeyPress(event) {
-        if (event.key === "Enter") {
-            sendMessage();
-        }
-        }
+// Check định kỳ mỗi 2 giây để lấy tin nhắn mới từ agent
+setInterval(() => {
+    fetch(`http://localhost/project3/project/api/check_new_messages.php?session_id=${sessionId}&last_id=${lastMessageId}`)
+        .then(res => res.json())
+        .then(messages => {
+            console.log("Dữ liệu nhận được:", messages);
+            const chatBody = document.getElementById("chatbot-body");
+
+            messages.forEach(msg => {
+                const messageDiv = document.createElement("div");
+
+                if (msg.sender === "agent" || msg.sender === "bot") {
+                    messageDiv.className = "bot-message";
+                } else {
+                    messageDiv.className = "user-message";
+                    messageDiv.style.textAlign = "right";
+                }
+
+                messageDiv.textContent = msg.message;
+                chatBody.appendChild(messageDiv);
+
+                // ✅ Cập nhật lastMessageId đúng cách
+                lastMessageId = Math.max(lastMessageId, parseInt(msg.message_id));
+            });
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        })
+        .catch(err => {
+            console.error("Lỗi khi check tin nhắn mới:", err);
+        });
+}, 2000);
+</script>
 
 
-    </script>
 
 
     <!-- JavaScript Libraries -->
