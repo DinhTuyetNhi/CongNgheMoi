@@ -17,6 +17,39 @@ if (isset($_GET['logout'])) {
     }
 }
 
+if (isset($_POST['update_info'])) {
+    $new_name = $_POST['update_name'];
+    $new_email = $_POST['update_email'];
+    $user_id = $_SESSION['user_id'];
+
+    // Kiểm tra email đã tồn tại chưa (trừ chính mình)
+    $check_stmt = $conn->prepare("SELECT * FROM users WHERE user_email=? AND user_id != ?");
+    $check_stmt->bind_param("si", $new_email, $user_id);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+
+    if ($check_result->num_rows > 0) {
+        header('location: account.php?error=Email is already used by another account');
+        exit;
+    }
+
+    // Cập nhật thông tin
+    $stmt = $conn->prepare("UPDATE users SET user_name=?, user_email=? WHERE user_id=?");
+    $stmt->bind_param("ssi", $new_name, $new_email, $user_id);
+
+    if ($stmt->execute()) {
+        // Cập nhật lại session
+        $_SESSION['user_name'] = $new_name;
+        $_SESSION['user_email'] = $new_email;
+        header('location: account.php?message=Account information updated successfully');
+        exit;
+    } else {
+        header('location: account.php?error=Failed to update account info');
+        exit;
+    }
+}
+
+
 if (isset($_POST['change_password'])) {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
@@ -218,6 +251,24 @@ if (isset($_POST['change_password'])) {
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
+
+            <h3 class="font-weight-bold text-center">Update Account Info</h3>
+                <hr class="mx-auto">
+                <form method="POST" action="account.php">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="update_name" value="<?php echo $_SESSION['user_name']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="update_email" value="<?php echo $_SESSION['user_email']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="update_info" value="Update Info">
+                    </div>
+                </form>
+
+
                 <form id="account-form" method = "POST" action = "account.php">
                 <p class="text-center" style = "color:red"><?php  if(isset($_GET['error'])){echo $_GET['error']; }?></p>
                 <p class="text-center" style = "color:green"><?php  if(isset($_GET['message'])){echo $_GET['message'];} ?></p>
@@ -232,7 +283,7 @@ if (isset($_POST['change_password'])) {
                         <input type="password" class="form-control" id="account-password-confirm" name="confirmPassword" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Change Password" name="change_password" class="btn" id="change-pass-btn">
+                        <input type="submit" class="btn btn-primary" name="change_password" value="Change Password" id="change-pass-btn">
                     </div>
                 </form>
             </div>

@@ -16,39 +16,42 @@
           //return all products
         }
         else{*/
-          //1. determine page number
-          if(isset($_GET['page_no']) && $_GET['page_no'] != ''){
-            //if user has already entered page then page number is the one that they selected
-            $page_no = $_GET['page_no'];
-          }
-          else{
-            //if user just entered the page then default page is 1
-            $page_no = 1;
-          }
 
-          //2. return number of products 
-          $stmt1 = $conn->prepare("SELECT count(*) AS total_records from products");
-          $stmt1->execute();
-          $stmt1->bind_result($total_records);
-          $stmt1->store_result();
-          $stmt1->fetch();
+if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
+    $keyword = "%" . $_GET['keyword'] . "%";
 
-          //3.produt per page
-          $total_records_per_page = 4;
-          
-          $offset = ($page_no-1) * $total_records_per_page;
+    // Tìm kiếm theo tên sản phẩm
+    $stmt = $conn->prepare("SELECT * FROM products WHERE product_name LIKE ?");
+    $stmt->bind_param("s", $keyword);
+    $stmt->execute();
+    $products = $stmt->get_result();
 
-          $previous_page = $page_no - 1 ;
-          $next_page = $page_no + 1 ;
+    // Bỏ phân trang nếu đang tìm kiếm
+    $total_no_of_pages = 1;
+    $page_no = 1;
+} else {
+    // Xử lý phân trang như cũ
+    if(isset($_GET['page_no']) && $_GET['page_no'] != ''){
+        $page_no = $_GET['page_no'];
+    } else {
+        $page_no = 1;
+    }
 
-          $adjacents = "2";
-          $total_no_of_pages = ceil($total_records/$total_records_per_page);
+    $stmt1 = $conn->prepare("SELECT count(*) AS total_records from products");
+    $stmt1->execute();
+    $stmt1->bind_result($total_records);
+    $stmt1->store_result();
+    $stmt1->fetch();
 
-          //4. get all products
-          $stmt2 = $conn->prepare("SELECT * FROM products LIMIT $offset,$total_records_per_page");
-          $stmt2->execute();
-          $products = $stmt2->get_result();
-        //}
+    $total_records_per_page = 4;
+    $offset = ($page_no - 1) * $total_records_per_page;
+    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+
+    $stmt2 = $conn->prepare("SELECT * FROM products LIMIT $offset, $total_records_per_page");
+    $stmt2->execute();
+    $products = $stmt2->get_result();
+}
+
       ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,16 +120,22 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
+            <form action="shop.php" method="GET" class="d-flex">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search for products"
+                        value="<?php echo isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : ''; ?>">
+                    <div class="input-group-append">
+                        <button type="submit" class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
-                </form>
+                </div>
+                <?php if (isset($_GET['keyword']) && $_GET['keyword'] != ''): ?>
+                    <a href="shop.php" class="btn btn-outline-secondary ml-2">Xem tất cả</a>
+                <?php endif; ?>
+            </form>
+
+
             </div>
             <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">
@@ -219,31 +228,22 @@
 
         
             <?php } ?>
+          </div>
 
-
-
-
-         
-        <nav aria-label="Page navigation example">
-            <ul class="pagination mt-5 mx-auto">
-                <li class="page-item <?php if($page_no<=1){echo 'disabled';} ?>">
-                  <a class="page-link" href="<?php if($page_no<=1){echo '#';}else{echo '?page_no='.($page_no-1);
-                } ?>">Previous</a>
-                </li>
-
-                <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
-                <li class="page-item"><a class="page-link" href="?page_no=2">2</a></li>
-                <?php if($page_no >=3){?>
-                  <li class="page-item"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item"><a class="page-link" href="<?php echo"?page_no=".$page_no;?>"><?php echo $page_no;?></a></li>
+        <!-- Phân trang đưa ra ngoài hàng sản phẩm -->
+        <?php if (!isset($_GET['keyword']) || $_GET['keyword'] == '') { ?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-5">
+                <?php for($i = 1; $i <= $total_no_of_pages; $i++) { ?>
+                    <li class="page-item <?php if($i == $page_no) echo 'active'; ?>">
+                    <a class="page-link" href="shop.php?page_no=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
                 <?php } ?>
-                <li class="page-item <?php if($page_no>= $total_no_of_pages){echo 'disabled';}?>">
-                  <a class="page-link" href="<?php if($page_no>= $total_no_of_pages){echo '#';}else{echo '?page_no='.($page_no +1);
-                } ?>">Next</a></li>
-            </ul>
-        </nav>
+                </ul>
+            </nav>
+            <?php } ?>
         </div>
-      </section>
+    </section>
 
 
 

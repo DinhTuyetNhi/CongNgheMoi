@@ -123,7 +123,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 <div class="sidebar">
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a class="nav-link" href="dashboard.php">Dashboard</a>
+      <a class="nav-link" href="">Dashboard</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="dashboard.php">Orders</a>
