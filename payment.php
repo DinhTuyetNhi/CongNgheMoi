@@ -6,7 +6,7 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <title>Liceria & Co Shop</title>
+    <title>Trang thanh toán</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -38,11 +38,11 @@ session_start();
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+                    <a class="text-dark" href="">Câu hỏi thường gặp</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Help</a>
+                    <a class="text-dark" href="">Giúp đỡ</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="">Hỗ trợ</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -68,7 +68,7 @@ session_start();
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                <h4 class="m-0 display-5 font-weight-semi-bold" style="color: #d19c97;"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%"></span>Liceria & Co</h4>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
