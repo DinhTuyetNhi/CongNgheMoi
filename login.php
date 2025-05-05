@@ -1,47 +1,37 @@
 <?php
 
 session_start();
-//test thu
-
-if(isset($_SESSION['logged_in'])){
-  
-  header('location:account.php');
-  exit();
-}
-
 include('server/connection.php');
 
-if(isset($_POST['login_btn'])){
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
 
-  $email = $_POST['email'];
-  $password = md5($_POST['password']);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE user_email=? AND user_password=?");
+    $stmt->bind_param('ss', $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-  $stmt = $conn->prepare("SELECT user_id, user_email, user_name, user_password FROM users WHERE user_email=? AND user_password=? LIMIT 1");
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['user_email'] = $user['user_email'];
+        $_SESSION['user_name'] = $user['user_name'];
 
-  $stmt->bind_param('ss',$email,$password);
+        // Khôi phục giỏ hàng từ session tạm thời
+        if (isset($_SESSION['temp_cart'])) {
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = array();
+            }
+            $_SESSION['cart'] = array_merge($_SESSION['cart'], $_SESSION['temp_cart']);
+            unset($_SESSION['temp_cart']);
+        }
 
-  if($stmt->execute()){
-    //$stmt->bind_result($user_id, $username, $user_password);
-
-    $stmt->bind_result($user_id,$user_email,$username,$user_password);
-    $stmt->store_result();
-
-    if($stmt->num_rows() == 1){
-      $stmt->fetch();
-      
-      $_SESSION['user_id'] = $user_id;
-      $_SESSION['user_name'] = $username;
-      $_SESSION['user_email'] = $user_email;
-      $_SESSION['logged_in'] = true;
-      header('location: account.php?login_success=Logged in successfully');
-    }else{
-      // error
-      header('location: login.php?error=Could not verify your account');
+        header('location: cart.php');
+    } else {
+        header('location: login.php?error=Invalid email or password');
     }
-  }else{
-    // error
-    header('location: login.php?error=Something went worng');
-  }
 }
 
 ?>
@@ -50,7 +40,7 @@ if(isset($_POST['login_btn'])){
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Liceria & Co Shop</title>
+    <title>Đăng nhập</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -73,17 +63,18 @@ if(isset($_POST['login_btn'])){
     <link href="css/style2.css" rel="stylesheet">
 
 </head>
+
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div id="nav" class="row bg-secondary py-2 px-xl-5 " >
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+                    <a class="text-dark" href="">Câu hỏi thường gặp</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Help</a>
+                    <a class="text-dark" href="">Giúp đỡ</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="">Hỗ trợ</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -115,7 +106,7 @@ if(isset($_POST['login_btn'])){
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -140,38 +131,40 @@ if(isset($_POST['login_btn'])){
     <!-- Navbar Start -->
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
+            <!--Bỏ menu-->
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
+                    <h6 class="m-0">Tất cả sản phẩm</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="shop.php" class="nav-item nav-link">Sport Shoes</a>
-                        <a href="shop.php" class="nav-item nav-link">Sandals</a>
-                        <a href="shop.php" class="nav-item nav-link">Boots</a>
-                        <a href="shop.php" class="nav-item nav-link">High Heels</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày thể thao</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Sandal</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Boot</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Cao Gót</a>
                     </div>
                 </nav>
             </div>
+
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1"></span></h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link">Home</a>
-                            <a href="shop.php" class="nav-item nav-link">Shop</a>
-                            <a href="introduce.php" class="nav-item nav-link">Blog</a>
-                            <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                            <a href="index.php" class="nav-item nav-link">Trang chủ</a>
+                            <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
+                            <a href="introduce.php" class="nav-item nav-link">Tin tức</a>
+                            <a href="contact.php" class="nav-item nav-link">Cửa hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="login.php" class="nav-item nav-link active">Login</a>
-                            <a href="register.php" class="nav-item nav-link">Register</a>
+                            <a href="login.php" class="nav-item nav-link active">Đăng nhập</a>
+                            <a href="register.php" class="nav-item nav-link">Đăng kí</a>
                         </div>
                     </div>
                 </nav>
@@ -183,25 +176,29 @@ if(isset($_POST['login_btn'])){
     <!--Login-->
     <section class="my-5 py-5">
         <div class="container text-center mt-3 pt-5">
-            <h2 class="form-weight-bold">Login</h2>
+            <h2 class="form-weight-bold">Đăng nhập</h2>
             <hr class="mx-auto">
         </div>
         <div class="mx-auto container">
+            <?php
+            if (isset($_GET['error'])) {
+                echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_GET['error']) . '</p>';
+            }
+            ?>
             <form id="login-form" method="POST" action="login.php">
-              <p style="color:red" class="text-center"><?php if(isset($_GET['error'])){echo $_GET['error'];}?></p>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" id="login-email" name="email" placeholder="Email" required/>
+                    <input type="text" class="form-control" id="login-email" name="email" placeholder="Nhập email" required/>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" required/>
+                    <label>Mật khẩu</label>
+                    <input type="password" class="form-control" id="login-password" name="password" placeholder="Nhập mật khẩu" required/>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn" id="login-btn" name="login_btn" value="Login"/>
+                    <input type="submit" class="btn" id="login-btn" name="login" value="Đăng nhập"/>
                 </div>
                 <div class="form-group">
-                    <a id="register-url" href="register.php" class="btn">Don't have account? Register</a>
+                    <a id="register-url" href="register.php" class="btn">Quên mật khẩu? Đăng kí</a>
                 </div>
             </div>
             </form>
@@ -214,46 +211,39 @@ if(isset($_POST['login_btn'])){
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%" ></span></h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="img/logo.png" alt="" width="30%" ></span></h1>
                 </a>
-                <p>We provide the best products for the most affordable prices.</p>
+                <p>Chúng tôi cung cấp các sản phẩm tốt nhất với mức giá hợp lí.</p>
 
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Liên kết nhanh</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a>
+                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Bộ sưu tập</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a>
+                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Về chúng tôi</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Contact Us</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Chính sách</h5>
                         <div class="d-flex flex-column justify-content-start">
-                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyen Van Bao, quan Go Vap, thanh pho Ho Chi Minh</p>
-                        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                        <p class="mb-2">Chính sách bảo mật</p>
+                        <p class="mb-2">Chính sách khách hàng</p>
+                        <p class="mb-0">Chính sách bảo hành và đổi trả</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="font-weight-bold text-dark mb-4">Liên hệ với chúng tôi</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyễn Văn Bảo, Quận Gò Vấp, Thành phố Hồ Chí Minh</p>
+                        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>soulmates@gmail.com</p>
                         <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>091 234 5678</p>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -261,7 +251,7 @@ if(isset($_POST['login_btn'])){
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Liceria & Co Shop</a>. All Rights Reserved.
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">SOULMATES SHOP được thiết kế bởi T&N</a>. All Rights Reserved.
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
@@ -284,5 +274,18 @@ if(isset($_POST['login_btn'])){
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+  document.getElementById("login-form").addEventListener("submit", function(event){
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
+
+    if(password.length < 6 || password.length > 20){
+      alert("Mật khẩu phải từ 6 đến 20 ký tự.");
+      event.preventDefault(); // ngăn form submit
+    }
+
+    // Email có thể kiểm tra bằng regex nếu muốn
+  });
+</script>
 </body>
 </html>

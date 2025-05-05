@@ -15,13 +15,19 @@ if(isset($_POST['register'])){
   $password = $_POST['password'];
   $confirmPassword = $_POST['confirmPassword'];
 
+  // Email validation
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !str_ends_with($email, '@gmail.com')) {
+    header('location: register.php?error=Email phải là địa chỉ @gmail.com hợp lệ');
+    exit;
+  }
+
   // Password confirmation check
   if($password !== $confirmPassword){
-    header('location: register.php?error=passwords dont match');
+    header('location: register.php?error=Mật khẩu không khớp');
     exit;
   
-  } else if(strlen($password) < 6){
-    header('location: register.php?error=passwords must be at least 6 characters');
+  } else if(strlen($password) < 6 || strlen($password) > 20){
+    header('location: register.php?error=Mật khẩu phải từ 6 đến 20 ký tự');
     exit;
 
   } else {
@@ -34,7 +40,7 @@ if(isset($_POST['register'])){
       $stmt1->fetch();
 
       if($num_rows != 0){
-        header('location: register.php?error=user with this email already exists');
+        header('location: register.php?error=User with this email already exists');
         exit;
       } else {
         // Insert new user into the database
@@ -49,7 +55,7 @@ if(isset($_POST['register'])){
           $_SESSION['logged_in'] = true;
           header('location: account.php?register_success=You registered successfully');
         } else {
-          header('location: register.php?error=could not create an account at the moment');
+          header('location: register.php?error=Could not create an account at the moment');
         }
         exit;
       }
@@ -213,11 +219,13 @@ if(isset($_POST['register'])){
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" id="register-email" name="email" placeholder="Email" required/>
+                    <input type="text" class="form-control" id="register-email" name="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Email không hợp lệ"/>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" class="form-control" id="register-password" name="password" placeholder="Password" required/>
+                    <input type="password" class="form-control" id="register-password" name="password" placeholder="Password" required minlength="6" maxlength="20"
+                    title="Mật khẩu phải từ 6 đến 20 ký tự"/>
                 </div>
                 <div class="form-group">
                     <label>Confirm Password</label>
@@ -310,5 +318,18 @@ if(isset($_POST['register'])){
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    document.getElementById("login-form").addEventListener("submit", function(event){
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+
+        if(password.length < 6 || password.length > 20){
+        alert("Mật khẩu phải từ 6 đến 20 ký tự.");
+        event.preventDefault(); // ngăn form submit
+        }
+
+        // Email có thể kiểm tra bằng regex nếu muốn
+    });
+    </script>
 </body>
 </html>

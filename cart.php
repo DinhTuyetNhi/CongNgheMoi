@@ -59,6 +59,15 @@ else if(isset($_POST['edit_quantity'])){
     }
 }
 
+// Kiểm tra trạng thái đăng nhập trước khi thanh toán
+if (isset($_POST['checkout'])) {
+    if (!isset($_SESSION['logged_in'])) {
+        // Lưu giỏ hàng tạm thời vào session
+        $_SESSION['temp_cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+        header('location: login.php?error=Bạn cần đăng nhập để thanh toán!');
+        exit;
+    }
+}
 
 function calculateSubTotalCart(){
     $subtotal = 0;
@@ -352,9 +361,13 @@ calculateSubTotalCart(); echo $_SESSION['subtotal'] ;?></h6>
 calculateTotalCart(); echo $_SESSION['total'] ;?></h5>
                         </div>
 
-                        <form method="POST" action="checkout.php">
-                        <button class="btn btn-block btn-primary my-3 py-3" name="checkout" value="checkout" type="submit">Proceed To Checkout</button>
-                        </form>
+                        <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
+                            <form method="POST" action="checkout.php">
+                                <button class="btn btn-block btn-primary my-3 py-3" name="checkout" value="checkout" type="submit">Proceed To Checkout</button>
+                            </form>
+                        <?php else: ?>
+                            <p class="text-center">Your cart is empty. Add items to proceed to checkout.</p>
+                        <?php endif; ?>
 
                     </div>
                 </div>

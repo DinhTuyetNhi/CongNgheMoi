@@ -1,12 +1,15 @@
 <?php
-    session_start();
-    if(!empty($_SESSION['cart'] && isset($_POST['checkout']))){
-        //let user in
-        
-    }
-    else{
-        header("location: index.php");
-    }
+session_start();
+if (!isset($_SESSION['logged_in'])) {
+    header('location: login.php?error=Bạn cần phải đăng nhập để thanh toán!');
+    exit;
+}
+
+
+
+if (isset($_GET['error'])) {
+    echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_GET['error']) . '</p>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,11 +171,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">ĐẶT HÀNG</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0"><a href="">Trang chủ</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Checkout</p>
+                <p class="m-0">Đặt hàng</p>
             </div>
         </div>
     </div>
@@ -185,26 +188,26 @@
             <div class="col-lg-8">
                 <form id="checkout-form" method="POST" action="server/place_order.php">
                 <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+                    <h4 class="font-weight-semi-bold mb-4">Địa chỉ giao hàng</h4>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label>Name</label>
-                            <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Name" required>
+                            <label>Họ và Tên</label>
+                            <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
                             <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+123 456 789" required>
+                            <label>Số điện thoại</label>
+                            <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" id="checkout-city" name="city" placeholder="New York" required>
+                            <label>Thành Phố</label>
+                            <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address</label>
+                            <label>Địa chỉ</label>
                             <input class="form-control" type="text" id="checkout-address" name="address" placeholder="New York" required>
                         </div>
                         
@@ -214,7 +217,7 @@
             
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -226,18 +229,18 @@
                         <div class="form-group">
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                                <label class="custom-control-label" for="directcheck">Thanh toán qua mã QR</label>
                             </div>
                         </div>
                         <div class="">
                             <div class="custom-control custom-radio">
                                 <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                <label class="custom-control-label" for="banktransfer">Thanh toán khi nhận hàng</label>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <p>Total amount: $ <?php echo $_SESSION['total']?></p>
+                        <p>Tổng số tiền: <?php echo $_SESSION['total']?> đ</p>
                         <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="place_order" type="submit">Place Order</button>
                     </div>
                     </form>
