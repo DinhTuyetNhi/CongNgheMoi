@@ -1,14 +1,60 @@
 <?php
 session_start();
+include('server/connection.php');
+
 if (!isset($_SESSION['logged_in'])) {
     header('location: login.php?error=Bạn cần phải đăng nhập để thanh toán!');
     exit;
 }
 
+// Lấy thông tin người dùng từ bảng users
+$user_name = "";
+$user_email = "";
+$user_phone = "";
+$user_city = "";
+$user_address = "";
 
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // Lấy thông tin từ bảng users
+    $sql_user = "SELECT user_name, user_email FROM users WHERE user_id = ?";
+    $stmt_user = $conn->prepare($sql_user);
+    $stmt_user->bind_param("i", $user_id);
+    $stmt_user->execute();
+    $result_user = $stmt_user->get_result();
+    if ($result_user->num_rows > 0) {
+        $row_user = $result_user->fetch_assoc();
+        $user_name = $row_user['user_name'];
+        $user_email = $row_user['user_email'];
+    }
+    $stmt_user->close();
+
+    // Lấy thông tin từ bảng order (lấy thông tin đơn hàng gần nhất)
+    $sql_order = "SELECT user_phone, user_city, user_address FROM orders WHERE user_id = ? ORDER BY order_date DESC LIMIT 1";
+    $stmt_order = $conn->prepare($sql_order);
+    $stmt_order->bind_param("i", $user_id);
+    $stmt_order->execute();
+    $result_order = $stmt_order->get_result();
+    if ($result_order->num_rows > 0) {
+        $row_order = $result_order->fetch_assoc();
+        $user_phone = $row_order['user_phone'];
+        $user_city = $row_order['user_city'];
+        $user_address = $row_order['user_address'];
+    }
+    $stmt_order->close();
+}
 
 if (isset($_GET['error'])) {
     echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_GET['error']) . '</p>';
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
+    $order_id = $_POST['order_id'];
+    $order_status = $_POST['order_status'];
+
+    // Bạn có thể sử dụng $order_id và $order_status để xử lý logic thanh toán
+    // Ví dụ: hiển thị thông tin đơn hàng hoặc cập nhật trạng thái đơn hàng
 }
 ?>
 <!DOCTYPE html>
@@ -192,23 +238,23 @@ if (isset($_GET['error'])) {
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>Họ và Tên</label>
-                            <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" required>
+                            <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" required>
+                            <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" value="<?php echo htmlspecialchars($user_email); ?>" readonly>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Số điện thoại</label>
-                            <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" required>
+                            <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" value="<?php echo htmlspecialchars($user_phone); ?>" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Thành Phố</label>
-                            <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" required>
+                            <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" value="<?php echo htmlspecialchars($user_city); ?>" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Địa chỉ</label>
-                            <input class="form-control" type="text" id="checkout-address" name="address" placeholder="New York" required>
+                            <input class="form-control" type="text" id="checkout-address" name="address" placeholder="New York" value="<?php echo htmlspecialchars($user_address); ?>" required>
                         </div>
                         
                     </div>

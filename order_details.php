@@ -205,7 +205,7 @@
 
             </table>
                 <?php if($order_status == 'not paid'){?>
-                    <form style="float: right;" method="POST" action="payment.php">
+                    <form style="float: right;" method="POST" action="checkout.php">
                         <input type="hidden" name="order_id" value="<?php echo $order_id;?>"/>
         
                         <input type="hidden" name="order_status" value="<?php echo $order_status;?>"/>
