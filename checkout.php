@@ -48,6 +48,14 @@ if (isset($_SESSION['user_id'])) {
 if (isset($_GET['error'])) {
     echo '<p style="color:red; text-align:center;">' . htmlspecialchars($_GET['error']) . '</p>';
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
+    $order_id = $_POST['order_id'];
+    $order_status = $_POST['order_status'];
+
+    // Bạn có thể sử dụng $order_id và $order_status để xử lý logic thanh toán
+    // Ví dụ: hiển thị thông tin đơn hàng hoặc cập nhật trạng thái đơn hàng
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
