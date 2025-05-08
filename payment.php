@@ -26,8 +26,7 @@ session_start();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style3.css" rel="stylesheet">
-    <link href="css/style4.css" rel="stylesheet">
+    <link href="css/style2.css" rel="stylesheet">
     
 
 </head>
@@ -87,11 +86,9 @@ session_start();
             <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
                 </a>
                 <a href="cart.php" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
                 </a>
             </div>
         </div>
@@ -106,14 +103,6 @@ session_start();
                     <h6 class="m-0">Tất cả sản phẩm</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
-                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="shop.php" class="nav-item nav-link">Giày Thể Thao</a>
-                        <a href="shop.php" class="nav-item nav-link">Giày Sandal</a>
-                        <a href="shop.php" class="nav-item nav-link">Giày Boot</a>
-                        <a href="shop.php" class="nav-item nav-link">Giày Cao Gót</a>
-                    </div>
-                </nav>
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
@@ -124,11 +113,11 @@ session_start();
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link">Trang Chủ</a>
+                    <div class="navbar-nav mr-auto py-0">
+                            <a href="index.php" class="nav-item nav-link active">Trang Chủ</a>
                             <a href="shop.php" class="nav-item nav-link">Sản Phẩm</a>
                             <a href="introduce.php" class="nav-item nav-link">Tin Tức</a>
-                            <a href="contact.php" class="nav-item nav-link active">Cửa Hàng</a>
+                            <a href="contact.php" class="nav-item nav-link">Cửa Hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <a href="login.php" class="nav-item nav-link">Đăng Nhập</a>
@@ -165,14 +154,14 @@ session_start();
         <?php if(isset($_POST['order_status']) && $_POST['order_status'] == "not paid"){?>
                 <?php $amount = strval($_SESSION['total']);?>
                 <?php $order_id = $_POST['order_id']; ?>
-                <p>Tổng Thanh Toán: <?php echo $_SESSION['total'];?> </p>
+                <p>Tổng thanh toán: <?php echo $_SESSION['total'];?> đ</p>
                 <!--<input class="btn btn-primary" type="submit" value="Pay Now"/>-->
                 <div id="paypal-button-container"></div>
 
             <?php }else if(isset($_SESSION['total']) && $_SESSION['total']!=0){?>
                 <?php $order_id = $_SESSION['order_id']; ?>
                 <?php $amount = strval($_SESSION['total']);?>
-                <p>Tổng Thanh Toán: <?php echo $_SESSION['total'];?> đ</p>
+                <p>Tổng thanh toán: <?php echo $_SESSION['total'];?> đ</p>
            <!-- <input class="btn btn-primary" type="submit" value="Pay Now"/> -->
                 <div id="paypal-button-container"></div>
 
@@ -219,7 +208,7 @@ session_start();
             }
         }).render('#paypal-button-container');
     </script>
-    
+
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
@@ -278,7 +267,7 @@ session_start();
     <!-- Footer End -->
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></scrip>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
