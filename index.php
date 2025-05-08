@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Trang chủ</title>
+    <title>Trang Chủ</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -97,11 +97,10 @@
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="shop.php" class="nav-item nav-link">Giày thể thao</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Thể Thao</a>
                         <a href="shop.php" class="nav-item nav-link">Giày Sandal</a>
                         <a href="shop.php" class="nav-item nav-link">Giày Boot</a>
                         <a href="shop.php" class="nav-item nav-link">Giày Cao Gót</a>
-                       
                     </div>
                 </nav>
             </div>
@@ -115,14 +114,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link active">Trang chủ</a>
-                            <a href="shop.php" class="nav-item nav-link">Sản phẩm</a>
-                            <a href="introduce.php" class="nav-item nav-link">Tin tức</a>
-                            <a href="contact.php" class="nav-item nav-link">Cửa hàng</a>
+                            <a href="index.php" class="nav-item nav-link active">Trang Chủ</a>
+                            <a href="shop.php" class="nav-item nav-link">Sản Phẩm</a>
+                            <a href="introduce.php" class="nav-item nav-link">Tin Tức</a>
+                            <a href="contact.php" class="nav-item nav-link">Cửa Hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="login.php" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="register.php" class="nav-item nav-link">Đăng kí</a>
+                            <a href="login.php" class="nav-item nav-link">Đăng Nhập</a>
+                            <a href="register.php" class="nav-item nav-link">Đăng Kí</a>
                         </div>
                     </div>
                 </nav>
@@ -344,12 +343,12 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Liên kết nhanh</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a>
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang Chủ</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản Phẩm</a>
                             <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Tin tức</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a>
-                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ Hàng</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh Toán</a>
+                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Cửa Hàng</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
@@ -361,19 +360,14 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Bản tin mới</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Tên của bạn" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Email của bạn"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Đăng ký ngay</button>
-                            </div>
-                        </form>
+                        <h5 class="font-weight-bold text-dark mb-4">Hệ thống cửa hàng</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 1</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 2</a>
+                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 3</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 4</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 5</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -381,7 +375,7 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Liceria & Co Shop</a>. Đã đăng ký Bản quyền.
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Bản quyền thuộc về Liceria & Co Shop</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">

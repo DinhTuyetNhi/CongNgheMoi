@@ -16,7 +16,7 @@ else{
 
 <head>
     <meta charset="utf-8">
-    <title>Liceria & Co Shop</title>
+    <title>Trang Chi Tiết Sản Phẩm</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -37,6 +37,7 @@ else{
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style2.css" rel="stylesheet">
+    <link href="css/style5.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,11 +46,11 @@ else{
         <div id="nav" class="row bg-secondary py-2 px-xl-5 " >
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+                    <a class="text-dark" href="">Câu hỏi thường gặp</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Help</a>
+                    <a class="text-dark" href="">Giúp đỡ</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="">Hỗ trợ</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -81,7 +82,7 @@ else{
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -108,15 +109,15 @@ else{
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Danh mục sản phẩm</h6>
+                    <h6 class="m-0">Tất cả sản phẩm</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="shop.php" class="nav-item nav-link">Giày thể thao</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Thể Thao</a>
                         <a href="shop.php" class="nav-item nav-link">Giày Sandals</a>
-                        <a href="shop.php" class="nav-item nav-link">Giày bốt</a>
-                        <a href="shop.php" class="nav-item nav-link">Giày cao gót</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Boot</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Cao Gót</a>
                     </div>
                 </nav>
             </div>
@@ -130,14 +131,14 @@ else{
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop.php" class="nav-item nav-link">Các sản phẩm</a>
-                            <a href="introduce.php" class="nav-item nav-link">Blog</a>
-                            <a href="contact.php" class="nav-item nav-link">Liên hệ với chúng tôi</a>
+                            <a href="index.php" class="nav-item nav-link">Trang Chủ</a>
+                            <a href="shop.php" class="nav-item nav-link">Sản Phẩm</a>
+                            <a href="introduce.php" class="nav-item nav-link">Tin Tức</a>
+                            <a href="contact.php" class="nav-item nav-link">Cửa Hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="login.php" class="nav-item nav-link">Đăng nhập</a>
-                            <a href="register.php" class="nav-item nav-link">Đăng ký</a>
+                            <a href="login.php" class="nav-item nav-link">Đăng Nhập</a>
+                            <a href="register.php" class="nav-item nav-link">Đăng Kí</a>
                         </div>
                     </div>
                 </nav>
@@ -150,11 +151,11 @@ else{
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Chi tiết sản phẩm</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Chi Tiết Sản Phẩm</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="">Trang chủ</a></p>
+                <p class="m-0"><a href="">Trang Chủ</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Chi tiết sản phẩm</p>
+                <p class="m-0">Chi Tiết Sản Phẩm</p>
             </div>
         </div>
     </div>
@@ -235,23 +236,17 @@ else{
 
 
 
-
+    <!--Phần mô tả sản phẩm và xem đánh giá -->
         <div class="row px-xl-5">
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <!--Phần mô tả sản phẩm -->
                     <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả sản phẩm</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Thông tin chi tiết</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Đánh giá (0)</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Đánh giá</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3">Mô tả sản phẩm</h4>
-                        <p><?php echo $row['product_description']; ?></p>   
-                    </div>
-                    <?php }?>
-
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Thông tin chi tiết</h4>
                         <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
                         <div class="row">
                             <div class="col-md-6">
@@ -287,58 +282,219 @@ else{
                                   </ul> 
                             </div>
                         </div>
+                        <p><?php echo $row['product_description']; ?></p>   
                     </div>
-                    <div class="tab-pane fade" id="tab-pane-3">
+                    <?php }?>
+                    <!--Phần mô tả sản phẩm -->
+                    <div class="tab-pane fade" id="tab-pane-2">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
-                                <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
+                                <h4 class="mb-4">Đánh giá sản phẩm</h4>
+                                <div class="rating-summary">
+                                    <div class="average-rating">
+                                        <div class="big-rating">4.8</div>
+                                        <div class="star-rating">
+                                            <div class="star active">★</div>
+                                            <div class="star active">★</div>
+                                            <div class="star active">★</div>
+                                            <div class="star active">★</div>
+                                            <div class="star active">★</div>
                                         </div>
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                        <div class="total-reviews">124 đánh giá</div>
                                     </div>
+                                    <div class="rating-bars">
+                                        <div class="rating-bar">
+                                            <div class="rating-label">5★</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 85%;"></div>
+                                            </div>
+                                            <div class="rating-count">103</div>
+                                        </div>
+                                        <div class="rating-bar">
+                                            <div class="rating-label">4★</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 12%;"></div>
+                                            </div>
+                                            <div class="rating-count">15</div>
+                                        </div>
+                                        <div class="rating-bar">
+                                            <div class="rating-label">3★</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 3%;"></div>
+                                            </div>
+                                            <div class="rating-count">4</div>
+                                        </div>
+                                        <div class="rating-bar">
+                                            <div class="rating-label">2★</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 0%;"></div>
+                                            </div>
+                                            <div class="rating-count">0</div>
+                                        </div>
+                                        <div class="rating-bar">
+                                            <div class="rating-label">1★</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 2%;"></div>
+                                            </div>
+                                            <div class="rating-count">2</div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="other-reviews">
+                            <h2 class="section-title">Đánh giá từ khách hàng khác</h2>
+            
+                            <div class="filter-bar">
+                                <div class="filter-options">
+                                    <select>
+                                        <option>Mới nhất</option>
+                                        <option>Cũ nhất</option>
+                                        <option>Đánh giá cao nhất</option>
+                                        <option>Đánh giá thấp nhất</option>
+                                    </select>
+                                    
+                                    <select>
+                                        <option>Tất cả đánh giá</option>
+                                        <option>5 sao</option>
+                                        <option>4 sao</option>
+                                        <option>3 sao</option>
+                                        <option>2 sao</option>
+                                        <option>1 sao</option>
+                                    </select>
+                                    
+                                    <select>
+                                        <option>Tất cả</option>
+                                        <option>Có hình ảnh</option>
+                                        <option>Có video</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="search-box">
+                                    <span class="search-icon">🔍</span>
+                                    <input type="text" placeholder="Tìm kiếm đánh giá">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h4 class="mb-4">Đánh giá sản phẩm</h4>
-                                <small>Your email address will not be published. Required fields are marked *</small>
-                                <div class="d-flex my-3">
-                                    <p class="mb-0 mr-2">Đánh giá của bạn * :</p>
-                                    <div class="text-primary">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                            
+                            <!-- Review Item 1 -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
+                                        <div>
+                                            <div class="reviewer-name">Trần Thị B</div>
+                                            <div class="review-date">15/04/2025</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="message">Phản hồi của bạn *</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                
+                                <div class="review-rating">
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                </div>
+                                
+                                <h4>Sản phẩm tuyệt vời, đáng mua!</h4>
+                                
+                                <div class="review-text">
+                                    iPhone 15 Pro Max là chiếc điện thoại tốt nhất mà tôi từng sử dụng. Hiệu năng mạnh mẽ, pin trâu, camera chụp đẹp trong mọi điều kiện ánh sáng. Màn hình hiển thị rõ nét, màu sắc chân thực. Thời lượng pin đủ dùng trong 1-2 ngày với nhu cầu sử dụng bình thường. Rất hài lòng với sản phẩm!
+                                </div>
+                                
+                                <div class="review-images">
+                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
+                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
+                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
+                                </div>
+                                
+                                <div class="review-footer">
+                                    <div>Đánh giá này có hữu ích không?</div>
+                                    <button class="helpful-btn">👍 Có (23)</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Review Item 2 -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
+                                        <div>
+                                            <div class="reviewer-name">Lê Văn C</div>
+                                            <div class="review-date">10/04/2025</div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="name">Tên của bạn *</label>
-                                        <input type="text" class="form-control" id="name">
+                                </div>
+                                
+                                <div class="review-rating">
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star">★</div>
+                                </div>
+                                
+                                <h4>Pin trâu, camera đẹp nhưng giá cao</h4>
+                                
+                                <div class="review-text">
+                                    Sản phẩm tốt nhưng giá khá cao so với các đối thủ cạnh tranh. Camera chụp đẹp, đặc biệt là chế độ chụp đêm rất ấn tượng. Pin dùng được khoảng 1.5 ngày với nhu cầu sử dụng thông thường. Điểm trừ duy nhất là giá thành và việc sạc pin hơi chậm.
+                                </div>
+                                
+                                <div class="review-footer">
+                                    <div>Đánh giá này có hữu ích không?</div>
+                                    <button class="helpful-btn">👍 Có (11)</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Review Item 3 -->
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
+                                        <div>
+                                            <div class="reviewer-name">Phạm Thị D</div>
+                                            <div class="review-date">05/04/2025</div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="email">Email của bạn*</label>
-                                        <input type="email" class="form-control" id="email">
-                                    </div>
-                                    <div class="form-group mb-0">
-                                        <input type="submit" value="Nhận xét" class="btn btn-primary px-3">
-                                    </div>
-                                </form>
+                                </div>
+                                
+                                <div class="review-rating">
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                    <div class="star active">★</div>
+                                </div>
+                                
+                                <h4>Quá xuất sắc, đáng đồng tiền</h4>
+                                
+                                <div class="review-text">
+                                    Quá hài lòng với chiếc iPhone 15 Pro Max này. Thiết kế sang trọng, cầm nắm vừa tay. Hiệu năng mạnh mẽ xử lý mọi tác vụ nặng như game, chỉnh sửa video đều mượt mà. Camera chụp cực kỳ sắc nét, màu sắc tự nhiên. Pin dùng thoải mái cả ngày dài. Tính năng mới nhất của iOS cũng rất thú vị và hữu ích.
+                                </div>
+                                
+                                <div class="review-images">
+                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
+                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
+                                </div>
+                                
+                                <div class="review-footer">
+                                    <div>Đánh giá này có hữu ích không?</div>
+                                    <button class="helpful-btn">👍 Có (19)</button>
+                                </div>
+                            </div>
+                            
+                            <div class="pagination">
+                                <div class="page-item active">1</div>
+                                <div class="page-item">2</div>
+                                <div class="page-item">3</div>
+                                <div class="page-item">4</div>
+                                <div class="page-item">5</div>
+                                <div class="page-item">...</div>
+                                <div class="page-item">10</div>
                             </div>
                         </div>
+                    </div>
+                        
+                    </div>
+
                     </div>
                 </div>
             </div>
@@ -382,46 +538,41 @@ else{
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%" ></span></h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%"></span></h1>
                 </a>
-                <p>Liceria & Co - Nâng niu đôi bàn chân bạn</p>
+                <p>Chúng tôi cung cấp những sản phẩm tốt nhất với mức giá phải chăng nhất.</p>
 
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Các liên kết nhanh</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Liên kết nhanh</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Các sản phẩm bán chạy</a>
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang Chủ</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản Phẩm</a>
                             <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Tin tức</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng mua sắm </a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh toán</a>
-                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Giới thiệu</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ Hàng</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh Toán</a>
+                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Cửa Hàng</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Liên hệ với chúng tôi</h5>
                         <div class="d-flex flex-column justify-content-start">
-                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyễn Văn Bảo, phường 1, quận Gò Vấp, tp. Hồ Chí Minh</p>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyen Van Bao, quan Go Vap, thanh pho Ho Chi Minh</p>
                         <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                         <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>091 234 5678</p>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Đăng ký để nhận các tin ưu đãi mới nhất</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Tên của bạn" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Email của bạn"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Đăng ký ngay</button>
-                            </div>
-                        </form>
+                        <h5 class="font-weight-bold text-dark mb-4">Hệ thống cửa hàng</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 1</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 2</a>
+                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 3</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 4</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 5</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -429,7 +580,7 @@ else{
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Liceria & Co Shop</a>. All Rights Reserved.
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Bản quyền thuộc về Liceria & Co Shop</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
@@ -481,6 +632,47 @@ else{
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        function setRating(rating) {
+            // Reset all stars
+            const stars = document.querySelectorAll('.rating-section .star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        
+        // Add event listeners when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent form submission for demo
+            const form = document.querySelector('.review-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Cảm ơn bạn đã gửi đánh giá!');
+            });
+            
+            // Add click handlers for helpful buttons
+            const helpfulBtns = document.querySelectorAll('.helpful-btn');
+            helpfulBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const currentText = btn.innerText;
+                    const count = parseInt(currentText.match(/\d+/)[0]);
+                    btn.innerText = `👍 Có (${count + 1})`;
+                });
+            });
+            
+            // Add click handlers for remove image buttons
+            const removeButtons = document.querySelectorAll('.remove-img');
+            removeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    btn.parentElement.remove();
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

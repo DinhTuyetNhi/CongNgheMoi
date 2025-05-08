@@ -27,7 +27,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Liceria & Co Shop</title>
+    <title>Trang xem chi tiết đơn hàng</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -47,7 +47,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style2.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style3.css">
 </head>
 <body>
     <!-- Topbar Start -->
@@ -55,11 +56,11 @@
         <div id="nav" class="row bg-secondary py-2 px-xl-5 " >
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+                    <a class="text-dark" href="">Câu hỏi thường gặp</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Help</a>
+                    <a class="text-dark" href="">Giúp đỡ</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="">Hỗ trợ</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
@@ -118,15 +119,15 @@
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Categories</h6>
+                    <h6 class="m-0">Tất cả sản phẩm</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="shop.php" class="nav-item nav-link">Sport Shoes</a>
-                        <a href="shop.php" class="nav-item nav-link">Sandals</a>
-                        <a href="shop.php" class="nav-item nav-link">Boots</a>
-                        <a href="shop.php" class="nav-item nav-link">High Heels</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Thể Thao</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Sandal</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Boot</a>
+                        <a href="shop.php" class="nav-item nav-link">Giày Cao Gót</a>
                     </div>
                 </nav>
             </div>
@@ -140,14 +141,14 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.php" class="nav-item nav-link">Home</a>
-                            <a href="shop.php" class="nav-item nav-link">Shop</a>
-                            <a href="introduce.php" class="nav-item nav-link">Blog</a>
-                            <a href="contact.php" class="nav-item nav-link">Contact Us</a>
+                            <a href="index.php" class="nav-item nav-link">Trang Chủ</a>
+                            <a href="shop.php" class="nav-item nav-link">Sản Phẩm</a>
+                            <a href="introduce.php" class="nav-item nav-link">Tin Tức</a>
+                            <a href="contact.php" class="nav-item nav-link">Cửa Hàng</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="login.php" class="nav-item nav-link">Login</a>
-                            <a href="register.php" class="nav-item nav-link">Register</a>
+                            <a href="login.php" class="nav-item nav-link">Đăng Nhập</a>
+                            <a href="register.php" class="nav-item nav-link">Đăng Kí</a>
                         </div>
                     </div>
                 </nav>
@@ -158,65 +159,135 @@
 
 
 <!--Orders-->
-<section id="orders" class="orders container my-5 py-3">
-  <div class="container mt-5">
-    <h2 class="font-weight-bold text-center">Orders details</h2>
-    <hr class="mx-auto">
-  </div>
-
-
-  <div class="container-fluid pt-5">
-    <div class="row justify-content-center px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
-            <table class="table table-bordered text-center mb-0">
-                <thead class="bg-secondary text-dark">
+<div class="container">
+        <div class="header">
+            <div class="logo">ShopVN</div>
+            <div class="order-number">Đơn hàng #123456789</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Trạng thái đơn hàng</div>
+            <div class="status status-paid">Đã thanh toán</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Thông tin đơn hàng</div>
+            <div class="info-row">
+                <div class="info-label">Ngày đặt hàng:</div>
+                <div class="info-value">06/05/2025</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Họ tên người nhận:</div>
+                <div class="info-value">Nguyễn Văn A</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Số điện thoại:</div>
+                <div class="info-value">0987654321</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Địa chỉ giao hàng:</div>
+                <div class="info-value">123 Đường Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email:</div>
+                <div class="info-value">nguyenvana@example.com</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Chi tiết sản phẩm</div>
+            <table>
+                <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
+                        <th>Sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
                     </tr>
                 </thead>
-                
-                <?php if($order_details->num_rows > 0){ ?>
-                    <?php while($row = $order_details->fetch_assoc()){ ?>
+                <tbody>
                     <tr>
-                        <td>
-                            <div class="product-infor">
-                                <img src="assets/imgs/<?php echo $row['product_image'];?>" width="20%"/>
-                                <div>
-                                    <p class="mt-3"><?php echo $row['product_name']; ?></p>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span>$<?php echo $row['product_price']; ?></span>
-                        </td>
-                        <td>
-                            <span><?php echo $row['product_quantity']; ?></span>
-                        </td>
-                        
+                        <td>Điện thoại iPhone 15 Pro Max 256GB</td>
+                        <td class="price">30.990.000₫</td>
+                        <td>1</td>
+                        <td class="price">30.990.000₫</td>
                     </tr>
-                    <?php } ?>
-                <?php } else { ?>
                     <tr>
-                        <td colspan="4"><p>No order details found.</p></td>
+                        <td>Ốp lưng iPhone 15 Pro Max silicon</td>
+                        <td class="price">590.000₫</td>
+                        <td>2</td>
+                        <td class="price">1.180.000₫</td>
                     </tr>
-                <?php } ?>
-
+                    <tr>
+                        <td>Cường lực iPhone 15 Pro Max</td>
+                        <td class="price">350.000₫</td>
+                        <td>1</td>
+                        <td class="price">350.000₫</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Tạm tính</td>
+                        <td class="price">32.520.000₫</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Phí vận chuyển</td>
+                        <td class="price">30.000₫</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Giảm giá</td>
+                        <td class="price">-500.000₫</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3">Tổng tiền</td>
+                        <td class="price">32.050.000₫</td>
+                    </tr>
+                </tfoot>
             </table>
-                <?php if($order_status == 'not paid'){?>
-                    <form style="float: right;" method="POST" action="checkout.php">
-                        <input type="hidden" name="order_id" value="<?php echo $order_id;?>"/>
+        </div>
         
-                        <input type="hidden" name="order_status" value="<?php echo $order_status;?>"/>
-                        <input class="btn" type="submit" value="Pay Now" style="color: #fff; background-color: #fb774b;" />
-                    </form>
-                <?php }?>
+        <div class="payment-method">
+            <div class="section-title">Phương thức thanh toán</div>
+            <div class="info-row">
+                <div class="info-label">Phương thức:</div>
+                <div class="info-value">Thanh toán trực tuyến qua thẻ tín dụng/ghi nợ</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Trạng thái:</div>
+                <div class="info-value">Đã thanh toán</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Mã giao dịch:</div>
+                <div class="info-value">VNPAY202505060123</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Thông tin vận chuyển</div>
+            <div class="info-row">
+                <div class="info-label">Đơn vị vận chuyển:</div>
+                <div class="info-value">Giao hàng nhanh</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Mã vận đơn:</div>
+                <div class="info-value">GHN123456789VN</div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Thời gian dự kiến:</div>
+                <div class="info-value">08/05/2025 - 09/05/2025</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="#" class="button">In đơn hàng</a>
+            <a href="#" class="button" style="margin-left: 10px; background-color: #f0ad4e;">Theo dõi đơn hàng</a>
+        </div>
+        
+        <div class="footer">
+            <p>Cảm ơn bạn đã mua hàng tại ShopVN!</p>
+            <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua email <strong>hotro@shopvn.com</strong> hoặc số điện thoại <strong>1900 1234</strong></p>
         </div>
     </div>
-</div>
-
-</section>
 
 
     <!-- Footer Start -->
@@ -224,26 +295,26 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%" ></span></h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%"></span></h1>
                 </a>
-                <p>We provide the best products for the most affordable prices.</p>
+                <p>Chúng tôi cung cấp những sản phẩm tốt nhất với mức giá phải chăng nhất.</p>
 
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Liên kết nhanh</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Blog</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang Chủ</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản Phẩm</a>
+                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Tin tức</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ Hàng</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh Toán</a>
+                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Cửa Hàng</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Contact Us</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Liên hệ với chúng tôi</h5>
                         <div class="d-flex flex-column justify-content-start">
                         <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyen Van Bao, quan Go Vap, thanh pho Ho Chi Minh</p>
                         <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
@@ -251,19 +322,14 @@
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
+                        <h5 class="font-weight-bold text-dark mb-4">Hệ thống cửa hàng</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 1</a>
+                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 2</a>
+                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 3</a>
+                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 4</a>
+                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 5</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,7 +337,7 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Liceria & Co Shop</a>. All Rights Reserved.
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Bản quyền thuộc về Liceria & Co Shop</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
