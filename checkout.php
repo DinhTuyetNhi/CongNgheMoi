@@ -233,64 +233,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <form id="checkout-form" method="POST" action="server/place_order.php">
-                <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Địa chỉ giao hàng</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>Họ và Tên</label>
-                            <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" value="<?php echo htmlspecialchars($user_email); ?>" readonly>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Số điện thoại</label>
-                            <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" value="<?php echo htmlspecialchars($user_phone); ?>" required>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Thành Phố</label>
-                            <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" value="<?php echo htmlspecialchars($user_city); ?>" required>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Địa chỉ</label>
-                            <input class="form-control" type="text" id="checkout-address" name="address" placeholder="New York" value="<?php echo htmlspecialchars($user_address); ?>" required>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
+                    <div class="mb-4">
+                        <h4 class="font-weight-semi-bold mb-4">Địa chỉ giao hàng</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Họ và Tên</label>
+                                <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Thanh toán qua mã QR</label>
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" value="<?php echo htmlspecialchars($user_email); ?>" readonly>
                             </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                <label class="custom-control-label" for="banktransfer">Thanh toán khi nhận hàng</label>
+                            <div class="col-md-6 form-group">
+                                <label>Số điện thoại</label>
+                                <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" value="<?php echo htmlspecialchars($user_phone); ?>" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Thành Phố</label>
+                                <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" value="<?php echo htmlspecialchars($user_city); ?>" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Địa chỉ</label>
+                                <input class="form-control" type="text" id="checkout-address" name="address" placeholder="123 Đường ABC" value="<?php echo htmlspecialchars($user_address); ?>" required>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <p>Tổng số tiền: <?php echo $_SESSION['total']?> đ</p>
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="place_order" type="submit">Place Order</button>
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="paypal" value="paypal" required>
+                                    <label class="custom-control-label" for="paypal">Thanh toán qua PayPal</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="qr" value="qr" required>
+                                    <label class="custom-control-label" for="qr">Thanh toán qua mã QR</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="cod" value="cod" required>
+                                    <label class="custom-control-label" for="cod">Thanh toán khi nhận hàng</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <p>Tổng số tiền: <?php echo $_SESSION['total']; ?> đ</p>
+                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="place_order" type="submit">Đặt hàng</button>
+                        </div>
                     </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>

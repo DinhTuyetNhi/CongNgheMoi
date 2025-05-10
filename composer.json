@@ -1,0 +1,18 @@
+{
+    "name": "avita/project",
+    "description": "QR code paypal",
+    "autoload": {
+        "psr-4": {
+            "Avita\\Project\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DinhTuyetNhi",
+            "email": "dinhthituyetnhi1906@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}
