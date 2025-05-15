@@ -223,12 +223,12 @@ if(isset($_POST['register'])){
                     title="Email không hợp lệ"/>
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
+                    <label>Mật Khẩu</label>
                     <input type="password" class="form-control" id="register-password" name="password" placeholder="Nhập mật khẩu" required minlength="6" maxlength="20"
                     title="Mật khẩu phải từ 6 đến 20 ký tự"/>
                 </div>
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Nhập lại mật khẩu</label>
                     <input type="password" class="form-control" id="register-confirm-password" name="confirmPassword" placeholder="Nhập lại mật khẩu" required/>
                 </div>
                 <div class="form-group">

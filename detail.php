@@ -289,91 +289,8 @@ else{
                     <div class="tab-pane fade" id="tab-pane-2">
                         <div class="row">
                                 <h4 class="mb-4">Đánh giá sản phẩm</h4>
-                                <div class="rating-summary">
-                                    <div class="average-rating">
-                                        <div class="big-rating">4.8</div>
-                                        <div class="star-rating">
-                                            <div class="star active">★</div>
-                                            <div class="star active">★</div>
-                                            <div class="star active">★</div>
-                                            <div class="star active">★</div>
-                                            <div class="star active">★</div>
-                                        </div>
-                                        <div class="total-reviews">124 đánh giá</div>
-                                    </div>
-                                    <div class="rating-bars">
-                                        <div class="rating-bar">
-                                            <div class="rating-label">5★</div>
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 85%;"></div>
-                                            </div>
-                                            <div class="rating-count">103</div>
-                                        </div>
-                                        <div class="rating-bar">
-                                            <div class="rating-label">4★</div>
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 12%;"></div>
-                                            </div>
-                                            <div class="rating-count">15</div>
-                                        </div>
-                                        <div class="rating-bar">
-                                            <div class="rating-label">3★</div>
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 3%;"></div>
-                                            </div>
-                                            <div class="rating-count">4</div>
-                                        </div>
-                                        <div class="rating-bar">
-                                            <div class="rating-label">2★</div>
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 0%;"></div>
-                                            </div>
-                                            <div class="rating-count">0</div>
-                                        </div>
-                                        <div class="rating-bar">
-                                            <div class="rating-label">1★</div>
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 2%;"></div>
-                                            </div>
-                                            <div class="rating-count">2</div>
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
-                        <div class="other-reviews">
-                            <h2 class="section-title">Đánh giá từ khách hàng khác</h2>
-            
-                            <div class="filter-bar">
-                                <div class="filter-options">
-                                    <select>
-                                        <option>Mới nhất</option>
-                                        <option>Cũ nhất</option>
-                                        <option>Đánh giá cao nhất</option>
-                                        <option>Đánh giá thấp nhất</option>
-                                    </select>
-                                    
-                                    <select>
-                                        <option>Tất cả đánh giá</option>
-                                        <option>5 sao</option>
-                                        <option>4 sao</option>
-                                        <option>3 sao</option>
-                                        <option>2 sao</option>
-                                        <option>1 sao</option>
-                                    </select>
-                                    
-                                    <select>
-                                        <option>Tất cả</option>
-                                        <option>Có hình ảnh</option>
-                                        <option>Có video</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="search-box">
-                                    <span class="search-icon">🔍</span>
-                                    <input type="text" placeholder="Tìm kiếm đánh giá">
-                                </div>
-                            </div>
-                            
+                        <div class="other-reviews">                            
                             <!-- Review Item 1 -->
                             <div class="review-item">
                                 <div class="review-header">
@@ -407,7 +324,7 @@ else{
                                 </div>
                                 
                                 <div class="review-footer">
-                                    <div>Đánh giá này có hữu ích không?</div>
+
                                     <button class="helpful-btn">👍 Có (23)</button>
                                 </div>
                             </div>
@@ -524,8 +441,8 @@ else{
               <i class="fas fa-star"></i>
             </div>
             <h5 class="p-name"><?php echo $row['product_name'];?></h5>
-            <h4 class="p-price">$ <?php echo $row['product_price']; ?></h4>
-            <a href="<?php echo "detail.php?product_id=".$row['product_id'];?>"><button class="buy-btn">Buy Now</button></a>
+            <h4 class="p-price"><?php echo $row['product_price']; ?> đ</h4>
+            <a href="<?php echo "detail.php?product_id=".$row['product_id'];?>"><button class="buy-btn">Mua Ngay</button></a>
           </div>
 
           <?php } ?>

@@ -56,6 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
     // Bạn có thể sử dụng $order_id và $order_status để xử lý logic thanh toán
     // Ví dụ: hiển thị thông tin đơn hàng hoặc cập nhật trạng thái đơn hàng
 }
+
+// Sau khi khách chọn phương thức thanh toán và nhấn thanh toán
+if (isset($_POST['payment'])) {
+    $_SESSION['payment_method'] = $_POST['payment'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -231,34 +236,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-            <div class="col-lg-12">
-                <form id="checkout-form" method="POST" action="#" onsubmit="return validatePaymentMethod()">
+            <div class="col-lg-8">
+                <form id="checkout-form" method="POST" action="server/place_order.php">
                     <div class="mb-4">
                         <h4 class="font-weight-semi-bold mb-4">Địa chỉ giao hàng</h4>
                         <div class="row">
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Họ và Tên</label>
                                 <input class="form-control" type="text" id="checkout-name" name="name" placeholder="Nguyễn Văn A" value="<?php echo htmlspecialchars($user_name); ?>" readonly>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>E-mail</label>
                                 <input class="form-control" type="text" id="checkout-email" name="email" placeholder="example@email.com" value="<?php echo htmlspecialchars($user_email); ?>" readonly>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Số điện thoại</label>
                                 <input class="form-control" type="text" id="checkout-phone" name="phone" placeholder="+0123 456 789" value="<?php echo htmlspecialchars($user_phone); ?>" required>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Thành Phố</label>
                                 <input class="form-control" type="text" id="checkout-city" name="city" placeholder="Hồ Chí Minh" value="<?php echo htmlspecialchars($user_city); ?>" required>
                             </div>
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-6 form-group">
                                 <label>Địa chỉ</label>
-                                <input class="form-control" type="text" id="checkout-address" name="address" placeholder="New York" value="<?php echo htmlspecialchars($user_address); ?>" required>
+                                <input class="form-control" type="text" id="checkout-address" name="address" placeholder="123 Đường ABC" value="<?php echo htmlspecialchars($user_address); ?>" required>
                             </div>
                         </div>
                     </div>
-
                     <div class="card border-secondary mb-5">
                         <div class="card-header bg-secondary border-0">
                             <h4 class="font-weight-semi-bold m-0">Phương thức thanh toán</h4>
@@ -266,26 +270,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="paypal" value="paypal">
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
+                                    <input type="radio" class="custom-control-input" name="payment" id="paypal" value="paypal" required>
+                                    <label class="custom-control-label" for="paypal">Thanh toán qua PayPal</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="directcheck" value="qr">
-                                    <label class="custom-control-label" for="directcheck">Thanh toán qua mã QR</label>
+                                    <input type="radio" class="custom-control-input" name="payment" id="qr" value="qr" required>
+                                    <label class="custom-control-label" for="qr">Thanh toán qua mã QR</label>
                                 </div>
                             </div>
-                            <div class="">
+                            <div class="form-group">
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="cod">
-                                    <label class="custom-control-label" for="banktransfer">Thanh toán khi nhận hàng</label>
+                                    <input type="radio" class="custom-control-input" name="payment" id="cod" value="cod" required>
+                                    <label class="custom-control-label" for="cod">Thanh toán khi nhận hàng</label>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
-                            <p>Tổng số tiền: <?php echo $_SESSION['total']?> đ</p>
-                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="place_order" type="submit">Place Order</button>
+                            <p>Tổng số tiền: <?php echo $_SESSION['total']; ?> đ</p>
+                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="place_order" type="submit">Đặt hàng</button>
                         </div>
                     </div>
                 </form>
@@ -300,41 +304,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold px-3 mr-1"><img src="assets/imgs/Logo.png" alt="" width="30%"></span></h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
                 </a>
-                <p>Chúng tôi cung cấp những sản phẩm tốt nhất với mức giá phải chăng nhất.</p>
-
+                <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Liên kết nhanh</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Trang Chủ</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Sản Phẩm</a>
-                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Tin tức</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Giỏ Hàng</a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Thanh Toán</a>
-                            <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Cửa Hàng</a>
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Liên hệ với chúng tôi</h5>
+                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                        <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>12 Nguyen Van Bao, quan Go Vap, thanh pho Ho Chi Minh</p>
-                        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-                        <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>091 234 5678</p>
+                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Hệ thống cửa hàng</h5>
-                        <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 1</a>
-                            <a class="text-dark mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 2</a>
-                            <a class="text-dark mb-2" href="introduce.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 3</a>
-                            <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 4</a>
-                            <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Cửa hàng 5</a>
-                        </div>
+                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
+                        <form action="">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                    required="required" />
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -342,7 +356,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Bản quyền thuộc về Liceria & Co Shop</a>
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                    by
+                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
@@ -369,39 +385,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    <script>
-    function validatePaymentMethod() {
-        // Lấy danh sách các phương thức thanh toán
-        const paymentMethods = document.getElementsByName('payment');
-        let selectedMethod = null;
-
-        // Kiểm tra xem có phương thức nào được chọn không
-        for (let i = 0; i < paymentMethods.length; i++) {
-            if (paymentMethods[i].checked) {
-                selectedMethod = paymentMethods[i].value;
-                break;
-            }
-        }
-
-        // Nếu không có phương thức nào được chọn, hiển thị thông báo và ngăn gửi form
-        if (!selectedMethod) {
-            alert('Vui lòng chọn phương thức thanh toán trước khi đặt hàng!');
-            return false;
-        }
-
-        // Điều hướng đến trang tương ứng dựa trên phương thức thanh toán
-        if (selectedMethod === 'paypal') {
-            window.location.href = 'payment.php';
-        } else if (selectedMethod === 'qr') {
-            window.location.href = 'QR.php';
-        } else if (selectedMethod === 'cod') {
-            window.location.href = 'shipcod.php';
-        }
-
-        return false; // Ngăn form gửi đi
-    }
-    </script>
 </body>
 
 </html>

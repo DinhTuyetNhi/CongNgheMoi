@@ -92,7 +92,7 @@
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -161,7 +161,7 @@
 <!--Orders-->
 <div class="container">
         <div class="header">
-            <div class="logo">ShopVN</div>
+            <div class="logo">Liceria & Co</div>
             <div class="order-number">Đơn hàng #123456789</div>
         </div>
         

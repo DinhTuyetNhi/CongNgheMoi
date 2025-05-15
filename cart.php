@@ -177,7 +177,7 @@ function calculateTotalCart(){
             <div class="col-lg-6 col-6 text-left">
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩms">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -326,7 +326,7 @@ function calculateTotalCart(){
             <div class="col-lg-4">
                 <form class="mb-5" action="">
                     <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                        <input type="text" class="form-control p-4" placeholder="Mã giảm giá">
                         <div class="input-group-append">
                             <button class="btn btn-primary">Áp dụng phiếu giảm giá</button>
                         </div>
@@ -343,7 +343,7 @@ function calculateTotalCart(){
 calculateSubTotalCart(); echo $_SESSION['subtotal'] ;?> đ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
+                            <h6 class="font-weight-medium">Vận chuyển</h6>
                             <h6 class="font-weight-medium"> <?php 
                 // Hiển thị phí vận chuyển
                 if(isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
@@ -363,7 +363,7 @@ calculateTotalCart(); echo $_SESSION['total'] ;?> đ</h5>
 
                         <?php if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])): ?>
                             <form method="POST" action="checkout.php">
-                                <button class="btn btn-block btn-primary my-3 py-3" name="checkout" value="checkout" type="submit">Proceed To Checkout</button>
+                                <button class="btn btn-block btn-primary my-3 py-3" name="checkout" value="checkout" type="submit">Tiến hành thanh toán</button>
                             </form>
                         <?php else: ?>
                             <p class="text-center">Giỏ hàng của bạn đang trống.<br> Thêm sản phẩm để tiến hành thanh toán.</p>
