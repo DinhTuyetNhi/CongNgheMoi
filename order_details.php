@@ -1,27 +1,84 @@
 <?php
-   
-   /*
-    not paid
-    
-    shipped
+include('server/connection.php');
 
-    delivered
-
-   */
-   include('server/connection.php');
-
-    if(isset($_POST['order_details_btn']) && isset($_POST['order_id'])){
-        $order_id = $_POST['order_id'];
-        $order_status = $_POST['order_status'];
-        $stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
-        $stmt->bind_param('i',$order_id);
-        $stmt->execute();
-        $order_details = $stmt->get_result();
+// Định dạng số điện thoại Việt Nam
+function format_vietnam_phone($phone) {
+    $phone = preg_replace('/[^0-9]/', '', $phone); // chỉ lấy số
+    if (strlen($phone) == 9) {
+        $phone = '0' . $phone;
     }
-    else{
-        header('location:account.php');
-        exit();
+    // Thêm dấu cách: 4-3-3
+    return preg_replace('/(\d{4})(\d{3})(\d{3})/', '$1 $2 $3', $phone);
+}
+
+if(isset($_POST['order_details_btn']) && isset($_POST['order_id'])){
+    $order_id = $_POST['order_id'];
+
+    // Lấy trạng thái và thông tin đơn hàng từ bảng orders
+    $stmt_order = $conn->prepare("SELECT * FROM orders WHERE order_id = ?");
+    $stmt_order->bind_param('i', $order_id);
+    $stmt_order->execute();
+    $order_info = $stmt_order->get_result()->fetch_assoc();
+    $stmt_order->close();
+
+    // Tính thời gian giao hàng dự kiến từ order_date
+    $delivery_start = '';
+    $delivery_end = '';
+    if (!empty($order_info['order_date'])) {
+        $date = new DateTime($order_info['order_date']);
+        $delivery_start = clone $date;
+        $delivery_start->modify('+3 days');
+        $delivery_end = clone $date;
+        $delivery_end->modify('+4 days');
     }
+
+    // Lấy họ tên và email từ bảng users dựa vào user_id của đơn hàng
+    $user_name = '';
+    $user_email = '';
+    if (isset($order_info['user_id'])) {
+        $stmt_user = $conn->prepare("SELECT user_name, user_email FROM users WHERE user_id = ?");
+        $stmt_user->bind_param('i', $order_info['user_id']);
+        $stmt_user->execute();
+        $result_user = $stmt_user->get_result();
+        if ($row_user = $result_user->fetch_assoc()) {
+            $user_name = $row_user['user_name'];
+            $user_email = $row_user['user_email'];
+        }
+        $stmt_user->close();
+    }
+
+    // Lấy chi tiết sản phẩm trong đơn hàng
+    $stmt = $conn->prepare("SELECT * FROM order_items WHERE order_id = ?");
+    $stmt->bind_param('i',$order_id);
+    $stmt->execute();
+    $order_details = $stmt->get_result();
+} else {
+    header('location:account.php');
+    exit();
+}
+
+$status = $order_info['order_status'];
+switch ($status) {
+    case 'not paid':
+        $status_text = 'Chưa thanh toán';
+        $status_class = 'status-unpaid';
+        break;
+    case 'on_hold':
+        $status_text = 'Chờ xử lý';
+        $status_class = 'status-hold';
+        break;
+    case 'shipped':
+        $status_text = 'Đã giao hàng';
+        $status_class = 'status-shipped';
+        break;
+    case 'delivered':
+        $status_text = 'Đã nhận hàng';
+        $status_class = 'status-delivered';
+        break;
+    default:
+        $status_text = $status;
+        $status_class = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -162,35 +219,37 @@
 <div class="container">
         <div class="header">
             <div class="logo">Liceria & Co</div>
-            <div class="order-number">Đơn hàng #123456789</div>
+            <div class="order-number">Đơn hàng #<?php echo htmlspecialchars($order_id); ?></div>
         </div>
         
         <div class="section">
             <div class="section-title">Trạng thái đơn hàng</div>
-            <div class="status status-paid">Đã thanh toán</div>
+            <div class="status <?php echo $status_class; ?>">
+                <?php echo $status_text; ?>
+            </div>
         </div>
         
         <div class="section">
             <div class="section-title">Thông tin đơn hàng</div>
             <div class="info-row">
                 <div class="info-label">Ngày đặt hàng:</div>
-                <div class="info-value">06/05/2025</div>
+                <div class="info-value"><?php echo date('d/m/Y H:i', strtotime($order_info['order_date'])); ?></div>
             </div>
             <div class="info-row">
                 <div class="info-label">Họ tên người nhận:</div>
-                <div class="info-value">Nguyễn Văn A</div>
+                <div class="info-value"><?php echo htmlspecialchars($user_name); ?></div>
             </div>
             <div class="info-row">
                 <div class="info-label">Số điện thoại:</div>
-                <div class="info-value">0987654321</div>
+                <div class="info-value"><?php echo htmlspecialchars(format_vietnam_phone($order_info['user_phone'])); ?></div>
             </div>
             <div class="info-row">
                 <div class="info-label">Địa chỉ giao hàng:</div>
-                <div class="info-value">123 Đường Lê Lợi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</div>
+                <div class="info-value"><?php echo htmlspecialchars($order_info['user_address'] . ', ' . $order_info['user_city']); ?></div>
             </div>
             <div class="info-row">
                 <div class="info-label">Email:</div>
-                <div class="info-value">nguyenvana@example.com</div>
+                <div class="info-value"><?php echo htmlspecialchars($user_email); ?></div>
             </div>
         </div>
         
@@ -206,60 +265,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Điện thoại iPhone 15 Pro Max 256GB</td>
-                        <td class="price">30.990.000₫</td>
-                        <td>1</td>
-                        <td class="price">30.990.000₫</td>
-                    </tr>
-                    <tr>
-                        <td>Ốp lưng iPhone 15 Pro Max silicon</td>
-                        <td class="price">590.000₫</td>
-                        <td>2</td>
-                        <td class="price">1.180.000₫</td>
-                    </tr>
-                    <tr>
-                        <td>Cường lực iPhone 15 Pro Max</td>
-                        <td class="price">350.000₫</td>
-                        <td>1</td>
-                        <td class="price">350.000₫</td>
-                    </tr>
+                    <?php if ($order_details->num_rows > 0): ?>
+                        <?php while($item = $order_details->fetch_assoc()): ?>
+                            <tr>
+                                <td>
+                                    <img src="assets/imgs/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" style="width:40px;vertical-align:middle;margin-right:8px;">
+                                    <?php echo htmlspecialchars($item['product_name']); ?>
+                                </td>
+                                <td class="price"><?php echo number_format($item['product_price'], 0, ',', '.'); ?>₫</td>
+                                <td><?php echo htmlspecialchars($item['product_quantity']); ?></td>
+                                <td class="price"><?php echo number_format($item['product_price'] * $item['product_quantity'], 0, ',', '.'); ?>₫</td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4">Không có sản phẩm trong đơn hàng.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="3">Tạm tính</td>
-                        <td class="price">32.520.000₫</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">Phí vận chuyển</td>
-                        <td class="price">30.000₫</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">Giảm giá</td>
-                        <td class="price">-500.000₫</td>
-                    </tr>
                     <tr class="total-row">
                         <td colspan="3">Tổng tiền</td>
-                        <td class="price">32.050.000₫</td>
+                        <td class="price">
+                            <?php
+                                // Tính tổng tiền từ các sản phẩm trong đơn hàng
+                                $total = 0;
+                                // Lấy lại danh sách sản phẩm vì $order_details đã fetch hết ở trên
+                                $stmt_total = $conn->prepare("SELECT product_price, product_quantity FROM order_items WHERE order_id = ?");
+                                $stmt_total->bind_param('i', $order_id);
+                                $stmt_total->execute();
+                                $result_total = $stmt_total->get_result();
+                                while ($row = $result_total->fetch_assoc()) {
+                                    $total += $row['product_price'] * $row['product_quantity'] + 10;
+                                }
+                                $stmt_total->close();
+                                echo number_format($total, 0, ',', '.') . '₫';
+                            ?>
+                        </td>
                     </tr>
                 </tfoot>
             </table>
-        </div>
-        
-        <div class="payment-method">
-            <div class="section-title">Phương thức thanh toán</div>
-            <div class="info-row">
-                <div class="info-label">Phương thức:</div>
-                <div class="info-value">Thanh toán trực tuyến qua thẻ tín dụng/ghi nợ</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Trạng thái:</div>
-                <div class="info-value">Đã thanh toán</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Mã giao dịch:</div>
-                <div class="info-value">VNPAY202505060123</div>
-            </div>
         </div>
         
         <div class="section">
@@ -269,18 +314,22 @@
                 <div class="info-value">Giao hàng nhanh</div>
             </div>
             <div class="info-row">
-                <div class="info-label">Mã vận đơn:</div>
-                <div class="info-value">GHN123456789VN</div>
-            </div>
-            <div class="info-row">
                 <div class="info-label">Thời gian dự kiến:</div>
-                <div class="info-value">08/05/2025 - 09/05/2025</div>
+                <div class="info-value">
+                    <?php
+                        if ($delivery_start && $delivery_end) {
+                            echo $delivery_start->format('d/m/Y') . ' - ' . $delivery_end->format('d/m/Y');
+                        } else {
+                            echo 'Không xác định';
+                        }
+                    ?>
+                </div>
             </div>
         </div>
         
         <div style="text-align: center; margin-top: 20px;">
-            <a href="#" class="button">In đơn hàng</a>
-            <a href="#" class="button" style="margin-left: 10px; background-color: #f0ad4e;">Theo dõi đơn hàng</a>
+            <a href="#" class="button" onclick="window.print(); return false;">In đơn hàng</a>
+            <a href="account.php#orders" class="button" style="margin-left: 10px; background-color: #f0ad4e;">Quay lại</a>
         </div>
         
         <div class="footer">
@@ -363,4 +412,3 @@
 </body>
 </html>
 
-    
