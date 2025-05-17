@@ -1,3 +1,7 @@
+<?php
+session_start();
+$user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +27,27 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style2.css" rel="stylesheet">
+    <style>
+        #chatbot-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .user-message {
+            align-self: flex-end; /* Đẩy sang phải */
+            background: #0084ff;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 18px 18px 4px 18px;
+            margin: 6px 0 6px 40px;
+            max-width: 80%;
+            font-size: 15px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+            word-break: break-word;
+            display: block;
+        }
+</style>
 </head>
 <body>
     <!-- Topbar Start -->
@@ -418,103 +443,162 @@
     </div>
     
     <script>
-function toggleChat() {
-    const chatWindow = document.getElementById("chatbot-window");
-    chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
-}
+        
+    let sessionId = localStorage.getItem('chat_session_id');
+    const userId = <?php echo $user_id !== null ? $user_id : 'null'; ?>;
 
-function handleKeyPress(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-}
 
-let lastMessageId = 0;
-const sessionId = 1; // session giả để test
-
-function sendMessage() {
-    const input = document.getElementById("user-input");
-    const message = input.value.trim();
-    if (message === "") return;
-
-    const chatBody = document.getElementById("chatbot-body");
-
-    // Hiển thị tin nhắn người dùng ngay lập tức
-    const userMsg = document.createElement("div");
-    userMsg.textContent = message;
-    userMsg.className = "user-message";
-    userMsg.style.textAlign = "right";
-    chatBody.appendChild(userMsg);
-
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    fetch('http://localhost/project3/project/api/chatbot.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            message: message,
-            session_id: sessionId
-        })
-    })
-    .then(async response => {
-        const text = await response.text();
-        try {
-            const data = JSON.parse(text);
-            if (data.error) throw new Error(data.error);
-            return data;
-        } catch (e) {
-            throw new Error("Phản hồi không hợp lệ từ server: " + text);
+    function ensureSessionId(callback, errorCallback) {
+        if (sessionId) {
+            callback();
+        } else {
+            fetch('http://localhost/project3/project/api/create_session.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: userId })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.session_id) {
+                    sessionId = data.session_id;
+                    localStorage.setItem('chat_session_id', sessionId);
+                    callback();
+                } else {
+                    if (errorCallback) errorCallback();
+                }
+            })
+            .catch(() => {
+                if (errorCallback) errorCallback();
+            });
         }
-    })
-    .then(data => {
-        const botMsg = document.createElement("div");
-        botMsg.className = "bot-message";
-        botMsg.textContent = data.reply;
-        chatBody.appendChild(botMsg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    })
-    .catch(error => {
-        console.error("Lỗi fetch: ", error);
-        const errorMsg = document.createElement("div");
-        errorMsg.className = "bot-message";
-        errorMsg.textContent = "Lỗi: " + error.message;
-        chatBody.appendChild(errorMsg);
-    });
+    }
 
-    input.value = "";
-}
+    function toggleChat() {
+        const chatWindow = document.getElementById("chatbot-window");
+        chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+    }
 
-// Check định kỳ mỗi 2 giây để lấy tin nhắn mới từ agent
-setInterval(() => {
-    fetch(`http://localhost/project3/project/api/check_new_messages.php?session_id=${sessionId}&last_id=${lastMessageId}`)
-        .then(res => res.json())
-        .then(messages => {
-            console.log("Dữ liệu nhận được:", messages);
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    let lastMessageId = 0;
+
+    function sendMessage() {
+        const input = document.getElementById("user-input");
+        const sendBtn = document.querySelector("#chatbot-input button");
+        const message = input.value.trim();
+        if (message === "") return;
+
+        // Xóa input NGAY khi nhấn gửi
+        input.value = "";
+
+        // KHÔNG disable input và nút gửi nữa
+
+        ensureSessionId(() => {
             const chatBody = document.getElementById("chatbot-body");
 
-            messages.forEach(msg => {
-                const messageDiv = document.createElement("div");
+            // Hiển thị tin nhắn người dùng ngay lập tức
+            const userMsg = document.createElement("div");
+            userMsg.textContent = message;
+            userMsg.className = "user-message";
+            chatBody.appendChild(userMsg);
 
-                if (msg.sender === "agent" || msg.sender === "bot") {
-                    messageDiv.className = "bot-message";
-                } else {
-                    messageDiv.className = "user-message";
-                    messageDiv.style.textAlign = "right";
-                }
-
-                messageDiv.textContent = msg.message;
-                chatBody.appendChild(messageDiv);
-
-                // ✅ Cập nhật lastMessageId đúng cách
-                lastMessageId = Math.max(lastMessageId, parseInt(msg.message_id));
-            });
+            // Thêm hiệu ứng loading
+            const loadingMsg = document.createElement("div");
+            loadingMsg.className = "bot-message";
+            loadingMsg.id = "loading-msg";
+            loadingMsg.textContent = "Đang trả lời...";
+            chatBody.appendChild(loadingMsg);
 
             chatBody.scrollTop = chatBody.scrollHeight;
-        })
-        .catch(err => {
-            console.error("Lỗi khi check tin nhắn mới:", err);
+
+            fetch('http://localhost/project3/project/api/chatbot.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message,
+                    session_id: sessionId,
+                    user_id: userId
+                })
+            })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    const data = JSON.parse(text);
+                    if (data.error) throw new Error(data.error);
+                    return data;
+                } catch (e) {
+                    throw new Error("Phản hồi không hợp lệ từ server: " + text);
+                }
+            })
+            .then(data => {
+                // Xóa loading
+                const loading = document.getElementById("loading-msg");
+                if (loading) loading.remove();
+
+                // CHỈ hiển thị bot-message nếu có nội dung trả lời
+                if (data.reply && data.reply.trim() !== "") {
+                    const botMsg = document.createElement("div");
+                    botMsg.className = "bot-message";
+                    botMsg.textContent = data.reply;
+                    chatBody.appendChild(botMsg);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }
+            })
+            .catch(error => {
+                // Xóa loading
+                const loading = document.getElementById("loading-msg");
+                if (loading) loading.remove();
+
+                console.error("Lỗi fetch: ", error);
+                const errorMsg = document.createElement("div");
+                errorMsg.className = "bot-message";
+                errorMsg.textContent = "Lỗi: " + error.message;
+                chatBody.appendChild(errorMsg);
+            })
+            .finally(() => {
+                // KHÔNG enable lại input/nút gửi vì không disable nữa
+                input.focus();
+            });
+        }, () => {
+            alert("Không thể tạo phiên chat. Vui lòng thử lại!");
         });
-}, 2000);
+    }
+
+    // Check định kỳ mỗi 2 giây để lấy tin nhắn mới từ agent
+    setInterval(() => {
+        fetch(`http://localhost/project3/project/api/check_new_messages.php?session_id=${sessionId}&last_id=${lastMessageId}`)
+            .then(res => res.json())
+            .then(messages => {
+                console.log("Dữ liệu nhận được:", messages);
+                const chatBody = document.getElementById("chatbot-body");
+
+                messages.forEach(msg => {
+                    const messageDiv = document.createElement("div");
+
+                    if (msg.sender === "agent" || msg.sender === "bot") {
+                        messageDiv.className = "bot-message";
+                    } else {
+                        messageDiv.className = "user-message";
+                        messageDiv.style.textAlign = "right";
+                    }
+
+                    messageDiv.textContent = msg.message;
+                    chatBody.appendChild(messageDiv);
+
+                    // ✅ Cập nhật lastMessageId đúng cách
+                    lastMessageId = Math.max(lastMessageId, parseInt(msg.message_id));
+                });
+
+                chatBody.scrollTop = chatBody.scrollHeight;
+            })
+            .catch(err => {
+                console.error("Lỗi khi check tin nhắn mới:", err);
+            });
+    }, 2000);
 </script>
 
 

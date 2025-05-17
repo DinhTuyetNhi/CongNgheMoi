@@ -8,7 +8,26 @@
     delivered
 
    */
+  session_start();
    include('server/connection.php');
+
+   if (isset($_POST['pay_now']) && isset($_POST['order_id'])) {
+    $order_id = $_POST['order_id'];
+    // Lấy tổng tiền từ bảng orders
+    $stmt = $conn->prepare("SELECT order_cost FROM orders WHERE order_id = ?");
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+    $stmt->bind_result($order_cost);
+    $stmt->fetch();
+    $stmt->close();
+
+    $_SESSION['order_id'] = $order_id;
+    $_SESSION['total'] = $order_cost; // Gán tổng tiền vào session
+
+    // Chuyển hướng sang trang thanh toán (checkout hoặc generate_qr tuỳ bạn)
+    header('Location: checkout.php');
+    exit();
+}
 
     if(isset($_POST['order_details_btn']) && isset($_POST['order_id'])){
         $order_id = $_POST['order_id'];
@@ -205,11 +224,11 @@
 
             </table>
                 <?php if($order_status == 'not paid'){?>
-                    <form style="float: right;" method="POST" action="checkout.php">
+                    <form style="float: right;" method="POST" action="order_details.php">
                         <input type="hidden" name="order_id" value="<?php echo $order_id;?>"/>
         
                         <input type="hidden" name="order_status" value="<?php echo $order_status;?>"/>
-                        <input class="btn" type="submit" value="Pay Now" style="color: #fff; background-color: #fb774b;" />
+                        <input class="btn" type="submit" name="pay_now" value="Pay Now" style="color: #fff; background-color: #fb774b;" />
                     </form>
                 <?php }?>
         </div>

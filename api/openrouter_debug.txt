@@ -1,0 +1,244 @@
+err: SSL certificate problem: unable to get local issuer certificate
+result: 
+err: SSL certificate problem: unable to get local issuer certificate
+result: 
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746892645-45hrf2ZfizQpJYMdjXzG","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746892645,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin chào, tôi là trợ lý tư vấn sản phẩm. Bạn cần hỗ trợ gì ạ?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":61,"completion_tokens":36,"total_tokens":97,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+
+         
+{"id":"gen-1746892665-4t9ldLPYBl3F4KtkVHSG","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746892665,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn, chúc mừng vì dịp cưới sắp tới! Bạn có thể xem các mẫu giày dành cho tiệc cưới tại cửa hàng giày hoặc trên các trang web bán hàng trực tuyến như Zalora, Lazada, Shopee. Đừng quên chọn một đôi giày thoải mái và phong cách để hoàn thiện trang phục của mình nhé! Chúc bạn tìm được đôi giày ưng ý!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":70,"completion_tokens":145,"total_tokens":215,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746892698-PpkLXqrpyXO59FnMfued","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746892698,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn, hiện tại chúng tôi đang có chương trình khuyến mãi đặc biệt. Bạn có thể xem chi tiết và cập nhật thông tin về khuyến mãi trên trang chủ của chúng tôi. Cám ơn bạn đã quan tâm!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":62,"completion_tokens":84,"total_tokens":146,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746933592-z3und2HmpGy3x6ThCmz3","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746933592,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chắc chắn! Hãy cho tôi biết bạn cần tư vấn về sản phẩm nào để tôi có thể giúp bạn.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":71,"completion_tokens":44,"total_tokens":115,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746937692-uSg2rA4kc31X5jnE74yF","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746937692,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Bạn có thắc mắc về sản phẩm nào không? Tôi có thể giúp gì cho bạn?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":67,"completion_tokens":38,"total_tokens":105,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746937804-EBqAE0WrBxbe3U5ELqiU","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746937804,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ có ạ! Chúng tôi hiện đang có giày Nike với nhiều mẫu mã và màu sắc khác nhau, chị quan tâm mẫu nào ạ? 🥿👟","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":325,"completion_tokens":65,"total_tokens":390,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1746937825-ktCtJZqEUiPdalcFnOjw","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746937825,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, chúng tôi có mẫu giày Nike giá 1 triệu đồng, bạn có thể xem các mẫu đang có màu đen, trắng, hồng pastel và be nhẹ nhàng. Đồng thời, hiện tại chúng tôi có chính sách đổi trả trong vòng 7 ngày nếu giày chưa sử dụng và còn nguyên tem. Chúc bạn tìm được đôi giày ưng ý!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":332,"completion_tokens":137,"total_tokens":469,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746937862-z6PB1so7WyEa65UvAKCR","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746937862,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, để mang đi học êm chân và thanh lịch, chị có thể chọn giày với form chuẩn, chất liệu êm và thoáng như giày sneaker hoặc oxford đều rất phù hợp đấy ạ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":346,"completion_tokens":71,"total_tokens":417,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746937930-zVwitiAfuWD3TOeI6rHG","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746937930,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Màu nào hợp đi học vibe mùa thu đông? Màu đen, trắng, hồng pastel và be nhẹ nhàng sẽ rất phối hợp tốt với bầu không khí mùa thu đông đấy ạ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":346,"completion_tokens":74,"total_tokens":420,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746938000-93avO42OLuFo0oJZyGye","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746938000,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, giá đôi giày mà em đang tư vấn cho chị là 500,000 VND ạ. Chị cần thêm thông tin gì nữa không ạ? 🥿💖","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":383,"completion_tokens":55,"total_tokens":438,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1746938122-GGP3vnrqHKZr6dN6KSwQ","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746938122,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ chị ơi, bên em có bán áo khoác đa dạng mẫu mã và chất liệu đấy ạ. Chị cứ chọn mẫu ưng ý và đặt hàng, em sẽ hỗ trợ chị kiểm tra sản phẩm trước khi thanh toán. Nếu đơn hàng từ 500.000đ trở lên, chị sẽ được miễn phí vận chuyển toàn quốc, còn đơn hàng nhỏ hơn thì phí ship chỉ từ 20-35k tuỳ khu vực ạ. Chị cần thêm thông tin gì không ạ? 🌟","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":330,"completion_tokens":171,"total_tokens":501,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746940255-xpoC2Pu9CqVRVeyfPG7J","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746940255,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn, có điều gì tôi có thể hỗ trợ bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":61,"completion_tokens":25,"total_tokens":86,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746940281-MtXF9U4Yb4vy5LHGAMe0","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746940281,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ vâng, em nghĩ đôi giày có đế cao su có rãnh chống trượt sẽ rất phù hợp khi kết hợp với áo dài trắng của chị. Điều này cũng giúp chị an tâm và tự tin hơn khi đi học ạ!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":360,"completion_tokens":91,"total_tokens":451,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1746940320-oDlASAR2SKUIg87yQmc0","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746940320,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, sản phẩm này là sandal ạ! Sandal được thiết kế dạng quai ngang và đế bằng cao su chống trượt, rất thoải mái khi mang ngoài trời đó ạ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":331,"completion_tokens":62,"total_tokens":393,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1746940362-1qDq568voeMn2uAXChxF","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1746940362,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Màu nào phù hợp với việc đi học mặc áo dài á? Áo dài thường kết hợp tốt với màu trắng hoặc màu pastel như hồng nhẹ nhàng, bạn có thể chọn những màu này để tạo phong cách truyền thống và thanh lịch khi đi học.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":285,"completion_tokens":106,"total_tokens":391,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747295448-wt418v6Gsoj4hzoncFWS","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747295448,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":56,"completion_tokens":24,"total_tokens":80,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747295519-snxCCWOXrPAvE2oTrZTm","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747295519,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, chúng tôi có nhiều mẫu giày phong cách và lịch lãm phù hợp cho dự tiệc prom. Size đa dạng từ 35 đến 40, chị có thể thoải mái lựa chọn. Nếu cần hỗ trợ thêm, chị có thể liên hệ với chúng tôi để được tư vấn cụ thể hơn nhé! 🌟👠","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":359,"completion_tokens":123,"total_tokens":482,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+
+         
+{"id":"gen-1747295551-qR5py3gYNsDQry3uUvGC","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747295551,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, để đi prom, chị có thể chọn giày với màu sắc nhẹ nhàng như đen, trắng, hồng pastel hoặc be để phối hợp với trang phục. Các mẫu giày cũng có đế cao su có rãnh chống trượt, đảm bảo an toàn cho chị kể cả khi đi dưới trời mưa ạ. 🌟","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":333,"completion_tokens":120,"total_tokens":453,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+
+         
+{"id":"gen-1747295765-AFkW2llKYpTxhQDt9huY","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747295765,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Giày đi prom của chúng tôi có giá từ 300k trở lên, có ưu đãi giảm giá và free ship cho đơn hàng trên 500k. Bạn có thể xem và đặt mua sản phẩm trực tuyến trên website của chúng tôi. Nếu cần hỗ trợ chọn size, vui lòng cung cấp chiều dài chân để chúng tôi tư vấn chi tiết hơn. Chúc bạn tìm được đôi giày ưng ý cho dịp prom! 🌟","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":335,"completion_tokens":151,"total_tokens":486,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747295821-LtASpjgDPY2Ip207eAx5","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747295821,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn, để được tư vấn sản phẩm, bạn có thể tham khảo trực tiếp trên website của chúng tôi hoặc liên hệ hotline để được hỗ trợ chi tiết nhé. Chúng tôi luôn sẵn lòng giúp đỡ bạn.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":272,"completion_tokens":80,"total_tokens":352,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747296341-EzIe5hBhIwd0bV6oJQ4Z","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747296341,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn, có điều gì tôi có thể giúp bạn không ạ?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":56,"completion_tokens":25,"total_tokens":81,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747296353-2XSMx6VfKUl0Kytv5dEC","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747296354,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":398,"completion_tokens":43,"total_tokens":441,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747302046-f8ALO7tc1FOSzGGInEBB","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302046,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì mình có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":56,"completion_tokens":24,"total_tokens":80,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747302065-hWR1bAoMEDLUuqKZZx9S","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302065,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, giày dành để đi đá banh có đủ size từ 35 đến 40 ạ. Nếu chị cho em biết chiều dài chân, em sẽ hỗ trợ chọn size chuẩn cho chị luôn 🦶💕","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":398,"completion_tokens":68,"total_tokens":466,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747302134-yEIVv2YRFxgZrwFF6XLx","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302134,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":405,"completion_tokens":43,"total_tokens":448,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747302217-KRpwXRypur2RzzfFjKlV","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302217,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":355,"completion_tokens":42,"total_tokens":397,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+
+         
+{"id":"gen-1747302567-4YQUxHGCqBvfJBB8h0ws","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302567,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":405,"completion_tokens":42,"total_tokens":447,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747302608-cz0VgdNyfpkdk68QJOa7","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302608,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":355,"completion_tokens":42,"total_tokens":397,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747302822-LzkrgtaqgwiG5qp86ECy","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302822,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":405,"completion_tokens":43,"total_tokens":448,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747302843-dJY7jJSDtpZCtl20Bgsk","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302843,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":356,"completion_tokens":42,"total_tokens":398,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747302870-DvsYu7zkxkfrUpRG5IqJ","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747302870,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn hôm nay không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":54,"completion_tokens":28,"total_tokens":82,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747303347-6HZ0TYmP5diCFj9MZhjb","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747303347,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":56,"completion_tokens":25,"total_tokens":81,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747303384-3kquGB4RvuhknbxZGFJ7","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747303384,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Câu trả lời tốt nhất cho khách: \"Chúng tôi có sản phẩm giày được rất nhiều khách hàng yêu thích, với mức giá phải chăng và phù hợp với nhiều hoàn cảnh khác nhau. Bên cạnh đó, chính sách đổi trả linh hoạt trong vòng 7 ngày nếu sản phẩm chưa sử dụng. Nếu có bất kỳ câu hỏi nào khác, chị cứ hỏi em nhé!\"","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":434,"completion_tokens":149,"total_tokens":583,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747303431-l1YTyftOoph7dwgcxkbB","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747303431,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":421,"completion_tokens":43,"total_tokens":464,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747304255-3tP8wUHMbnX2lKWW9LiK","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747304255,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":380,"completion_tokens":43,"total_tokens":423,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+
+         
+{"id":"gen-1747325216-KvT4Kx9ftZqEupEHorp9","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747325216,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Dạ, giày dành cho bóng đá của chúng tôi có đủ size từ 35 đến 40. Nếu chị có thể cung cấp chiều dài chân, em sẽ hỗ trợ chọn size phù hợp nhất. Đồng thời, giày này có màu đen, trắng, hồng pastel và be nhẹ nhàng. Và đặc biệt, giày có đế cao su có rãnh chống trượt, an toàn khi sử dụng kể cả trong thời tiết mưa nhé. Chị cần thêm thông tin gì khác không ạ? 🌟","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":398,"completion_tokens":175,"total_tokens":573,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747325317-aEr2fcM46oliyVXIDvFh","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747325317,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":394,"completion_tokens":43,"total_tokens":437,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747368512-IykoYeW1k4IgxOfr1s2Q","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747368512,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì Bạn cần tôi tư vấn hỗ trợ không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":58,"completion_tokens":30,"total_tokens":88,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747469913-4z6du3JyVCah6RhgHQYd","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747469914,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào Nhi, có điều gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":59,"completion_tokens":24,"total_tokens":83,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747469982-WkpbLOFAbuwlYZR7rqua","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747469982,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":325,"completion_tokens":42,"total_tokens":367,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}

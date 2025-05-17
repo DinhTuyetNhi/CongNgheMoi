@@ -146,9 +146,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
   <!-- Bộ lọc -->
   <div class="btn-group mb-3" role="group">
-    <button type="button" class="btn btn-outline-primary active">Mới nhận</button>
-    <button type="button" class="btn btn-outline-primary">Đang xử lý</button>
-    <button type="button" class="btn btn-outline-primary">Đã xong</button>
+    <button type="button" class="btn btn-outline-primary active">Chuyển lại cho chatbot</button>
+    <button type="button" class="btn btn-outline-primary">Chờ nhân viên xử lý</button>
+    <button type="button" class="btn btn-outline-primary">Đóng hội thoại</button>
   </div>
 
   <!-- Giao diện chat 3 cột -->
@@ -297,6 +297,36 @@ if (!isset($_SESSION['admin_logged_in'])) {
       console.error('Lỗi:', error);
     });
 }
+
+// Gắn sự kiện cho các nút trạng thái
+document.querySelectorAll('.btn-group .btn').forEach((btn, idx) => {
+  btn.addEventListener('click', function() {
+    if (!currentSessionId) {
+      alert('Hãy chọn một hội thoại trước!');
+      return;
+    }
+    let status = '';
+    if (idx === 0) status = 'active';
+    if (idx === 1) status = 'pending_agent';
+    if (idx === 2) status = 'closed';
+
+    fetch('../api/update_session_status.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: currentSessionId, status })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        alert('Cập nhật trạng thái thành công!');
+        loadConversations();
+        loadChat(currentSessionId);
+      } else {
+        alert('Lỗi: ' + data.error);
+      }
+    });
+  });
+});
 
 </script>
 
