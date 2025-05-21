@@ -330,6 +330,12 @@ switch ($status) {
         <div style="text-align: center; margin-top: 20px;">
             <a href="#" class="button" onclick="window.print(); return false;">In đơn hàng</a>
             <a href="account.php#orders" class="button" style="margin-left: 10px; background-color: #f0ad4e;">Quay lại</a>
+            <?php
+            $status_check = strtolower(trim($status));
+            ?>
+            <?php if ($status_check == 'shipped' || $status_check == 'delivered'): ?>
+                <a href="review.php" class="button" style="margin-left: 10px; background-color: #28a745;">Đánh giá</a>
+            <?php endif; ?>
         </div>
         
         <div class="footer">
@@ -411,4 +417,7 @@ switch ($status) {
     <script src="js/main.js"></script>
 </body>
 </html>
+<?php // Debug
+echo "<!-- STATUS: [$status] -->";
+?>
 

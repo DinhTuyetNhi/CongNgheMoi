@@ -287,128 +287,52 @@ else{
                     <?php }?>
                     <!--Phần mô tả sản phẩm -->
                     <div class="tab-pane fade" id="tab-pane-2">
-                        <div class="row">
-                                <h4 class="mb-4">Đánh giá sản phẩm</h4>
-                        </div>
-                        <div class="other-reviews">                            
-                            <!-- Review Item 1 -->
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
-                                        <div>
-                                            <div class="reviewer-name">Trần Thị B</div>
-                                            <div class="review-date">15/04/2025</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="review-rating">
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                </div>
-                                
-                                <h4>Sản phẩm tuyệt vời, đáng mua!</h4>
-                                
-                                <div class="review-text">
-                                    iPhone 15 Pro Max là chiếc điện thoại tốt nhất mà tôi từng sử dụng. Hiệu năng mạnh mẽ, pin trâu, camera chụp đẹp trong mọi điều kiện ánh sáng. Màn hình hiển thị rõ nét, màu sắc chân thực. Thời lượng pin đủ dùng trong 1-2 ngày với nhu cầu sử dụng bình thường. Rất hài lòng với sản phẩm!
-                                </div>
-                                
-                                <div class="review-images">
-                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
-                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
-                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
-                                </div>
-                                
-                                <div class="review-footer">
-
-                                    <button class="helpful-btn">👍 Có (23)</button>
-                                </div>
-                            </div>
-                            
-                            <!-- Review Item 2 -->
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
-                                        <div>
-                                            <div class="reviewer-name">Lê Văn C</div>
-                                            <div class="review-date">10/04/2025</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="review-rating">
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star">★</div>
-                                </div>
-                                
-                                <h4>Pin trâu, camera đẹp nhưng giá cao</h4>
-                                
-                                <div class="review-text">
-                                    Sản phẩm tốt nhưng giá khá cao so với các đối thủ cạnh tranh. Camera chụp đẹp, đặc biệt là chế độ chụp đêm rất ấn tượng. Pin dùng được khoảng 1.5 ngày với nhu cầu sử dụng thông thường. Điểm trừ duy nhất là giá thành và việc sạc pin hơi chậm.
-                                </div>
-                                
-                                <div class="review-footer">
-                                    <div>Đánh giá này có hữu ích không?</div>
-                                    <button class="helpful-btn">👍 Có (11)</button>
-                                </div>
-                            </div>
-                            
-                            <!-- Review Item 3 -->
-                            <div class="review-item">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <img src="/api/placeholder/40/40" alt="Reviewer" class="reviewer-avatar">
-                                        <div>
-                                            <div class="reviewer-name">Phạm Thị D</div>
-                                            <div class="review-date">05/04/2025</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="review-rating">
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                    <div class="star active">★</div>
-                                </div>
-                                
-                                <h4>Quá xuất sắc, đáng đồng tiền</h4>
-                                
-                                <div class="review-text">
-                                    Quá hài lòng với chiếc iPhone 15 Pro Max này. Thiết kế sang trọng, cầm nắm vừa tay. Hiệu năng mạnh mẽ xử lý mọi tác vụ nặng như game, chỉnh sửa video đều mượt mà. Camera chụp cực kỳ sắc nét, màu sắc tự nhiên. Pin dùng thoải mái cả ngày dài. Tính năng mới nhất của iOS cũng rất thú vị và hữu ích.
-                                </div>
-                                
-                                <div class="review-images">
-                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
-                                    <img src="/api/placeholder/80/80" alt="Review Image" class="review-image">
-                                </div>
-                                
-                                <div class="review-footer">
-                                    <div>Đánh giá này có hữu ích không?</div>
-                                    <button class="helpful-btn">👍 Có (19)</button>
-                                </div>
-                            </div>
-                            
-                            <div class="pagination">
-                                <div class="page-item active">1</div>
-                                <div class="page-item">2</div>
-                                <div class="page-item">3</div>
-                                <div class="page-item">4</div>
-                                <div class="page-item">5</div>
-                                <div class="page-item">...</div>
-                                <div class="page-item">10</div>
-                            </div>
+    <div class="row">
+        <h4 class="mb-4">Đánh giá sản phẩm</h4>
+    </div>
+    <div class="other-reviews">
+        <?php
+        // Lấy đánh giá từ database cho sản phẩm này
+        $reviews = [];
+        if (isset($product_id)) {
+            $stmt = $conn->prepare("SELECT pr.rating, pr.review_text, pr.created_at, u.user_name 
+                                    FROM product_reviews pr 
+                                    JOIN users u ON pr.user_id = u.user_id 
+                                    WHERE pr.product_id = ?
+                                    ORDER BY pr.created_at DESC");
+            $stmt->bind_param("i", $product_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($review = $result->fetch_assoc()) {
+                $reviews[] = $review;
+            }
+            $stmt->close();
+        }
+        ?>
+        <?php if (empty($reviews)): ?>
+            <div>Chưa có đánh giá nào cho sản phẩm này.</div>
+        <?php else: ?>
+            <?php foreach ($reviews as $review): ?>
+                <div class="review-item" style="border-bottom:1px solid #eee; margin-bottom:16px; padding-bottom:12px;">
+                    <div class="review-header" style="display:flex; align-items:center;">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name" style="font-weight:bold;"><?php echo htmlspecialchars($review['user_name']); ?></div>
+                            <div class="review-date" style="font-size:13px; color:#888;"><?php echo date('d/m/Y', strtotime($review['created_at'])); ?></div>
                         </div>
                     </div>
+                    <div class="review-rating" style="color:#ffc107; font-size:18px;">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <span class="star<?php echo $i <= $review['rating'] ? ' active' : ''; ?>">★</span>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="review-text" style="margin-top:6px;">
+                        <?php echo nl2br(htmlspecialchars($review['review_text'])); ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+</div>
                         
                     </div>
 

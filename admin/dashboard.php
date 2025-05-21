@@ -73,7 +73,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.php">Dashboard</a>
+                            <a class="nav-link active" href="report.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="dashboard.php">Orders</a>
