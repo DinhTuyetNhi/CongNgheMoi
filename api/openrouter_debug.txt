@@ -242,3 +242,127 @@ err:
 result: 
          
 {"id":"gen-1747469982-WkpbLOFAbuwlYZR7rqua","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747469982,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":325,"completion_tokens":42,"total_tokens":367,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: {"error":{"message":"No auth credentials found","code":401}}
+err: 
+result: 
+         
+{"id":"gen-1747650931-LrvjNj2t1YogulcoAAxY","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747650931,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Cần trợ giúp gì từ tôi hôm nay?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":56,"completion_tokens":23,"total_tokens":79,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747650944-gSIczXzQpB7UIpdkJORZ","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747650944,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":391,"completion_tokens":42,"total_tokens":433,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747650967-p4PWrRQl2l6wTgOZoYGN","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747650967,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":384,"completion_tokens":42,"total_tokens":426,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747651051-4aDi0Aq4DNFizbwstkWZ","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747651051,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":382,"completion_tokens":42,"total_tokens":424,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747651079-XH0IgnVD3ILNudVRzimL","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747651079,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin chào! Có gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":61,"completion_tokens":22,"total_tokens":83,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747709757-wXi6rrRxrbEGIhTQzwNj","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747709757,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":62,"completion_tokens":24,"total_tokens":86,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747711067-w3biNsQshCfYSx7RCvnr","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747711067,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.Thông. Cảm ơn bạn đã liên hệ!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":123,"completion_tokens":56,"total_tokens":179,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747712328-5eMAt5FEeuYHUcm8R8IO","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712328,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn hôm nay không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":123,"completion_tokens":28,"total_tokens":151,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747712337-48Sy4PZq5Oxk9rgoI8Ss","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712337,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chúng tôi bán nhiều loại giày khác nhau, từ giày thể thao đến giày công sở. Bạn cần tư vấn về loại giày nào cụ thể ạ?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":129,"completion_tokens":61,"total_tokens":190,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747712351-sgigCnkKPEjn4vXOcCAQ","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712351,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chúng tôi hiện không bán sản phẩm giày Nike.Bạn có thể tham khảo các sản phẩm khác trên trang web của chúng tôi. Cảm ơn bạn!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":128,"completion_tokens":51,"total_tokens":179,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747712365-2l3BEQQYQFPEAC2siHBj","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712365,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":127,"completion_tokens":42,"total_tokens":169,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747712447-EOlgOtI9B5lNkYWL3n07","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712447,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":147,"completion_tokens":42,"total_tokens":189,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747712485-su4An5tDjBbd6FguhcqT","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712486,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":128,"completion_tokens":42,"total_tokens":170,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747712506-I6qTs43XmCcuGgzF6IWH","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747712506,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp đỡ bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":124,"completion_tokens":27,"total_tokens":151,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747713106-3BO04BJm4tnPnlvJX884","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747713106,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":125,"completion_tokens":42,"total_tokens":167,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747715248-tBRg70IbSao40cXnVwxr","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747715248,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Chào bạn! Có điều gì tôi có thể giúp bạn không?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":123,"completion_tokens":24,"total_tokens":147,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747725381-cyPjcZi7LCzFgFpUqt4b","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747725381,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Tất nhiên, giày boots với kiểu dáng hiện đại và phong cách trẻ trung sẽ rất phù hợp để đi Hàn Quốc chụp hình đấy. Bạn có thể tham khảo các mẫu giày boots có thiết kế đẹp mắt và phong cách phù hợp với gu thời trang của mình. Chúc bạn có những bức hình đẹp tại Hàn Quốc!","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":144,"completion_tokens":132,"total_tokens":276,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747725402-dh2bJKpfytGO23EQxlPY","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747725402,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":135,"completion_tokens":42,"total_tokens":177,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+{"id":"gen-1747726198-5SqPz3GUMlpvLa3t9eL9","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747726198,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ. Có gì tôi hỗ trợ bạn?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":123,"completion_tokens":55,"total_tokens":178,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+{"id":"gen-1747727885-UDWwqnZWI4vnn7OBGM3h","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747727885,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":363,"completion_tokens":42,"total_tokens":405,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}
+err: 
+result: 
+         
+
+         
+
+         
+{"id":"gen-1747918355-ye3nRBQlPzpBEymznkTr","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1747918355,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"Xin chào! Có điều gì tôi có thể giúp bạn không ạ?","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":124,"completion_tokens":27,"total_tokens":151,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}}}

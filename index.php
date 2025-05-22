@@ -569,36 +569,16 @@ $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
     }
 
     // Check định kỳ mỗi 2 giây để lấy tin nhắn mới từ agent
-    setInterval(() => {
-        fetch(`http://localhost/project3/project/api/check_new_messages.php?session_id=${sessionId}&last_id=${lastMessageId}`)
-            .then(res => res.json())
-            .then(messages => {
-                console.log("Dữ liệu nhận được:", messages);
-                const chatBody = document.getElementById("chatbot-body");
-
-                messages.forEach(msg => {
-                    const messageDiv = document.createElement("div");
-
-                    if (msg.sender === "agent" || msg.sender === "bot") {
-                        messageDiv.className = "bot-message";
-                    } else {
-                        messageDiv.className = "user-message";
-                        messageDiv.style.textAlign = "right";
-                    }
-
-                    messageDiv.textContent = msg.message;
-                    chatBody.appendChild(messageDiv);
-
-                    // ✅ Cập nhật lastMessageId đúng cách
-                    lastMessageId = Math.max(lastMessageId, parseInt(msg.message_id));
-                });
-
-                chatBody.scrollTop = chatBody.scrollHeight;
-            })
-            .catch(err => {
-                console.error("Lỗi khi check tin nhắn mới:", err);
-            });
-    }, 2000);
+    // setInterval(() => {
+    //     fetch(`http://localhost/project3/project/api/check_new_messages.php?session_id=${sessionId}&last_id=${lastMessageId}`)
+    //         .then(res => res.json())
+    //         .then(messages => {
+    //             // ...append các tin nhắn mới vào giao diện...
+    //         })
+    //         .catch(err => {
+    //             console.error("Lỗi khi check tin nhắn mới:", err);
+    //         });
+    // }, 2000);
 </script>
 
 
@@ -616,6 +596,131 @@ $user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : null;
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-      
+     
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+    // Kết nối tới WebSocket server (đảm bảo server.js đang chạy ở port 3001)
+    const socket = io('http://localhost:3001');
+
+    // Khi đã có sessionId, join vào phòng chat riêng
+    function joinChatRoom() {
+        if (sessionId) {
+            socket.emit('join', sessionId);
+        }
+    }
+    // Gọi khi vừa load trang hoặc vừa tạo session mới
+    ensureSessionId(joinChatRoom);
+
+    // Nếu sessionId thay đổi (tạo mới), join lại phòng
+    // Bạn có thể gọi joinChatRoom() ở nơi khác nếu cần
+
+    // Khi gửi tin nhắn, gửi qua WebSocket để realtime cho nhân viên
+    // (KHÔNG thay đổi hàm sendMessage cũ, chỉ bổ sung gửi qua socket)
+    function sendMessage() {
+        const input = document.getElementById("user-input");
+        const message = input.value.trim();
+        if (message === "") return;
+
+        input.value = "";
+
+        ensureSessionId(() => {
+            const chatBody = document.getElementById("chatbot-body");
+
+            // Hiển thị tin nhắn người dùng ngay lập tức
+            const userMsg = document.createElement("div");
+            userMsg.textContent = message;
+            userMsg.className = "user-message";
+            chatBody.appendChild(userMsg);
+
+            // Thêm hiệu ứng loading
+            const loadingMsg = document.createElement("div");
+            loadingMsg.className = "bot-message";
+            loadingMsg.id = "loading-msg";
+            loadingMsg.textContent = "Đang trả lời...";
+            chatBody.appendChild(loadingMsg);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Gửi lên server PHP như cũ để lưu DB và nhận phản hồi bot
+            fetch('http://localhost/project3/project/api/chatbot.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: message,
+                    session_id: sessionId,
+                    user_id: userId
+                })
+            })
+            .then(async response => {
+                const text = await response.text();
+                try {
+                    const data = JSON.parse(text);
+                    if (data.error) throw new Error(data.error);
+                    return data;
+                } catch (e) {
+                    throw new Error("Phản hồi không hợp lệ từ server: " + text);
+                }
+            })
+            .then(data => {
+                // Xóa loading
+                const loading = document.getElementById("loading-msg");
+                if (loading) loading.remove();
+
+                // CHỈ hiển thị bot-message nếu có nội dung trả lời
+                if (data.reply && data.reply.trim() !== "") {
+                    const botMsg = document.createElement("div");
+                    botMsg.className = "bot-message";
+                    botMsg.textContent = data.reply;
+                    chatBody.appendChild(botMsg);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }
+            })
+            .catch(error => {
+                // Xóa loading
+                const loading = document.getElementById("loading-msg");
+                if (loading) loading.remove();
+
+                console.error("Lỗi fetch: ", error);
+                const errorMsg = document.createElement("div");
+                errorMsg.className = "bot-message";
+                errorMsg.textContent = "Lỗi: " + error.message;
+                chatBody.appendChild(errorMsg);
+            })
+            .finally(() => {
+                input.focus();
+            });
+
+            // Gửi qua WebSocket để nhân viên nhận realtime
+            socket.emit('chat_message', {
+                session_id: sessionId,
+                sender: 'user',
+                message: message
+            });
+        }, () => {
+            alert("Không thể tạo phiên chat. Vui lòng thử lại!");
+        });
+    }
+
+    // Lắng nghe tin nhắn realtime từ nhân viên (agent)
+    socket.on('chat_message', function(data) {
+        if (data.session_id == sessionId && data.sender === 'agent') {
+            const chatBody = document.getElementById("chatbot-body");
+            const agentMsg = document.createElement("div");
+            agentMsg.className = "bot-message";
+            agentMsg.textContent = data.message;
+            chatBody.appendChild(agentMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    });
+
+    // Nếu muốn tối ưu, sau khi test WebSocket ổn định, bạn có thể bỏ polling cũ (setInterval)
+    // Hiện tại, giữ nguyên polling để dự phòng, không ảnh hưởng gì
+
+    // Nếu sessionId được tạo mới (ví dụ sau khi đăng nhập), hãy gọi lại joinChatRoom()
+    // Ví dụ, sau khi set sessionId mới:
+    // sessionId = ...;
+    // joinChatRoom();
+
+</script>
 </body>
 </html>

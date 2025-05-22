@@ -9,7 +9,7 @@ $sql = "
     cm.timestamp AS last_time
 FROM handover_requests hr
 JOIN chat_sessions cs ON hr.session_id = cs.session_id
-JOIN users u ON hr.user_id = u.user_id
+LEFT JOIN users u ON hr.user_id = u.user_id
 LEFT JOIN (
     SELECT 
         session_id, 
@@ -36,7 +36,7 @@ if ($result && $result->num_rows > 0) {
 }
 
 foreach ($conversations as $conv) {
-    $avatar = strtoupper(substr($conv["user_name"], 0, 1));
+    $avatar = strtoupper(substr($conv["user_name"] ?? "?", 0, 1));
     $time = date('H:i', strtotime($conv["last_time"] ?? 'now'));
 
     echo '<li class="list-group-item conversation-item" data-session-id="' . htmlspecialchars($conv["session_id"]) . '">';
@@ -44,7 +44,7 @@ foreach ($conversations as $conv) {
     echo '    <div class="avatar">' . $avatar . '</div>';
     echo '    <div class="conversation-details">';
     echo '      <div class="name-time">';
-    echo '        <div class="user-name">' . htmlspecialchars($conv["user_name"]) . '</div>';
+    echo '        <div class="user-name">' . htmlspecialchars($conv["user_name"] ?? "Khách ẩn danh") . '</div>';
     echo '        <div class="time">' . $time . '</div>';
     echo '      </div>';
     echo '      <div class="last-message">' . htmlspecialchars($conv["last_message"]) . '</div>';

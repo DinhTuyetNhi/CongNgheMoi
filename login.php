@@ -28,9 +28,9 @@ if (isset($_POST['login'])) {
             unset($_SESSION['temp_cart']);
         }
 
-        header('location: cart.php');
+        header('location: index.php');
     } else {
-        header('location: login.php?error=Invalid email or password');
+        header('location: login.php?error=Email hoặc mật khẩu không đúng. Vui lòng thử lại!');
     }
 }
 

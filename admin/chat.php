@@ -204,6 +204,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 <script>
 
   // Tải danh sách hội thoại
@@ -225,6 +226,9 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
       // Gán sessionId hiện tại để biết đang phản hồi hội thoại nào
       currentSessionId = sessionId;
+
+      // Join phòng WebSocket
+      joinChatRoom(currentSessionId);
 
       // Làm nổi bật hội thoại đang chọn
       items.forEach(i => i.classList.remove('active'));
@@ -333,30 +337,65 @@ document.querySelectorAll('.btn-group .btn').forEach((btn, idx) => {
 <script>
 let currentSessionId = null; // lưu session hiện tại
 
-document.getElementById("staff-reply-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const message = document.getElementById("staff-input").value.trim();
-  if (message === "" || !currentSessionId) return;
+const socket = io('http://localhost:3001'); // Đúng port WebSocket server bạn đã chạy
 
-  fetch("../api/send_staff_reply.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      session_id: currentSessionId,
-      message: message
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
-  console.log("Phản hồi từ server:", data); // Thêm dòng này để debug
-  if (data.success) {
-    loadChat(currentSessionId);
-    document.getElementById("staff-input").value = "";
-  } else {
-    alert("Lỗi gửi tin nhắn: " + data.error);
-  }
+// Khi chọn hội thoại, join vào phòng tương ứng
+function joinChatRoom(sessionId) {
+    if (sessionId) {
+        socket.emit('join', sessionId);
+    }
+}
+
+// Khi chọn hội thoại, join phòng chat
+document.addEventListener('DOMContentLoaded', function() {
+    // Khi click vào hội thoại, join phòng
+    document.getElementById('conversation-list').addEventListener('click', function(e) {
+        let item = e.target.closest('.conversation-item');
+        if (item && item.dataset.sessionId) {
+            joinChatRoom(item.dataset.sessionId);
+        }
+    });
 });
 
+// Khi gửi tin nhắn, gửi qua WebSocket để khách nhận realtime
+document.getElementById("staff-reply-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const message = document.getElementById("staff-input").value.trim();
+    if (message === "" || !currentSessionId) return;
+
+    fetch("../api/send_staff_reply.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            session_id: currentSessionId,
+            message: message
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Phản hồi từ server:", data); // Thêm dòng này để debug
+        if (data.success) {
+            loadChat(currentSessionId);
+            document.getElementById("staff-input").value = "";
+
+            // Gửi qua WebSocket
+            socket.emit('chat_message', {
+                session_id: currentSessionId,
+                sender: 'agent',
+                message: message
+            });
+        } else {
+            alert("Lỗi gửi tin nhắn: " + data.error);
+        }
+    });
+});
+
+// Lắng nghe tin nhắn realtime từ khách hàng
+socket.on('chat_message', function(data) {
+    if (data.session_id == currentSessionId && data.sender === 'user') {
+        // Nếu đang mở đúng hội thoại, load lại chat
+        loadChat(currentSessionId);
+    }
 });
 </script>
 

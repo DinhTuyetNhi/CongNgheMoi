@@ -12,6 +12,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../server/connection.php';
+require_once __DIR__ . '/../server/config.php';
 
 if (!$conn) {
     echo json_encode(['error' => 'Kết nối DB thất bại: ' . mysqli_connect_error()]);
@@ -111,8 +112,10 @@ try {
     $stmt->execute();
     $stmt->bind_result($answer, $matched_question, $score);
 
+    // Áp dụng ngưỡng điểm số 2.5
+    $score_threshold = 2.5;
     while ($stmt->fetch()) {
-        if ($score > 0) {
+        if ($score >= $score_threshold) {
             $answers[] = [
                 'answer' => $answer,
                 'question' => $matched_question,
@@ -124,26 +127,22 @@ try {
     $stmt->close();
 
     if (count($answers) === 1) {
-        // Chỉ có 1 đáp án nổi bật, trả lời luôn
-        $reply = $answers[0]['answer'];
-        $found = true;
-    } elseif (count($answers) > 1 && (max($scores) - min($scores) > 1)) {
-        // Có 1 đáp án nổi bật hơn hẳn, trả lời luôn
+        // Chỉ có 1 đáp án đủ điểm, trả lời luôn
         $reply = $answers[0]['answer'];
         $found = true;
     } elseif (count($answers) > 1) {
-        // Có nhiều đáp án gần đúng, gửi lên AI để chọn/tổng hợp
+        // Có nhiều đáp án đủ điểm, gửi lên AI để chọn/tổng hợp
         $faqList = "";
         foreach ($answers as $idx => $ans) {
             $faqList .= ($idx+1) . ". " . $ans['question'] . " → " . $ans['answer'] . "\n";
         }
         $ai_prompt = "Khách hỏi: \"$message\"\n"
-    . "Dưới đây là các câu trả lời nội bộ, hãy chọn câu phù hợp nhất hoặc tổng hợp thành câu trả lời tốt nhất cho khách. "
-    . "Nếu không có thông tin hoặc không chắc chắn, hãy trả lời đúng nguyên văn: 'Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.'\n"
-    . $faqList;
+            . "Dưới đây là các câu trả lời nội bộ, hãy chọn câu phù hợp nhất hoặc tổng hợp thành câu trả lời tốt nhất cho khách. "
+            . "Nếu không có thông tin hoặc không chắc chắn, hãy trả lời đúng nguyên văn: 'Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.'\n"
+            . $faqList;
 
         // Gọi OpenRouter AI
-        $openrouter_api_key = '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';
+        $openrouter_api_key = OPENROUTER_API_KEY; // Thay thế API key cứng bằng hằng số
         $openrouter_url = "https://openrouter.ai/api/v1/chat/completions";
         $data = [
             "model" => "openai/gpt-3.5-turbo",
@@ -183,14 +182,14 @@ try {
         $found = true;
     }
 
-    // Nếu không tìm thấy gì, gọi AI như cũ
+    // Nếu không có đáp án đủ điểm, gọi AI trả lời tự do
     if (!$found) {
-        $openrouter_api_key = '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';
+        $openrouter_api_key = OPENROUTER_API_KEY; // Thay thế API key cứng bằng hằng số
         $openrouter_url = "https://openrouter.ai/api/v1/chat/completions";
         $data = [
             "model" => "openai/gpt-3.5-turbo",
             "messages" => [
-                ["role" => "system", "content" => "Bạn là trợ lý tư vấn sản phẩm, hãy trả lời ngắn gọn, thân thiện và đúng trọng tâm."],
+                ["role" => "system", "content" => "Bạn là trợ lý tư vấn sản phẩm, hãy trả lời ngắn gọn, thân thiện và đúng trọng tâm. Nếu không biết, hãy trả lời đúng nguyên văn: 'Xin lỗi, tôi chưa thể trả lời câu hỏi này. Tôi sẽ chuyển sang nhân viên hỗ trợ.'"],
                 ["role" => "user", "content" => $message]
             ],
             "max_tokens" => 200,
@@ -223,6 +222,7 @@ try {
             }
         }
     }
+
 
     // Nếu vẫn không có câu trả lời hợp lệ, chuyển sang nhân viên như cũ
     if (strpos($reply, "Xin lỗi") === 0) {

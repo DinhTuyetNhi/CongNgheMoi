@@ -1,5 +1,5 @@
-      <?php
-      include('server/connection.php');
+<?php
+include('server/connection.php');
 
       /*
       $stmt = $conn->prepare("SELECT * FROM products");
@@ -210,7 +210,8 @@ if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
     <section id="featured" class="my-5 py-5">
         <div class="row mx-auto container">
           <?php
-          while($row = $products->fetch_assoc()){
+          if ($products && $products->num_rows > 0) {
+            while($row = $products->fetch_assoc()){
           ?>
           <div class="product text-center col-lg-3 col-md-4 col-sm-12">
             <img class="img-fluid mb-3" src="assets/imgs/<?php echo $row['product_image']; ?>"/>
@@ -225,11 +226,13 @@ if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
             <h4 class="p-price">$<?php echo $row['product_price']; ?></h4>
             <a class="btn buy-btn" href="<?php echo "detail.php?product_id=". $row['product_id'];?>"> Buy Now</a>
           </div>
-
-        
-            <?php } ?>
-          </div>
-
+          <?php
+            }
+          } else {
+            echo '<div class="col-12 text-center"><h4>Không tìm thấy sản phẩm nào phù hợp.</h4></div>';
+          }
+          ?>
+        </div>
         <!-- Phân trang đưa ra ngoài hàng sản phẩm -->
         <?php if (!isset($_GET['keyword']) || $_GET['keyword'] == '') { ?>
             <nav aria-label="Page navigation example">
@@ -242,7 +245,6 @@ if (isset($_GET['keyword']) && $_GET['keyword'] != '') {
                 </ul>
             </nav>
             <?php } ?>
-        </div>
     </section>
 
 

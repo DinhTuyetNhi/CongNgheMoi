@@ -23,7 +23,7 @@ if(isset($_POST['register'])){
 
   // Password confirmation check
   if($password !== $confirmPassword){
-    header('location: register.php?error=Mật khẩu không khớp');
+    header('location: register.php?error=Mật khẩu xác nhận không khớp. Vui lòng nhập lại');
     exit;
   
   } else if(strlen($password) < 6 || strlen($password) > 20){
@@ -40,7 +40,7 @@ if(isset($_POST['register'])){
       $stmt1->fetch();
 
       if($num_rows != 0){
-        header('location: register.php?error=User with this email already exists');
+        header('location: register.php?error=Email này đã được đăng ký. Vui lòng sử dụng email khác hoặc đăng nhập');
         exit;
       } else {
         // Insert new user into the database
