@@ -3,6 +3,7 @@ session_start();
 include('connection.php');
 
 if (isset($_POST['place_order'])) {
+    // 1. Lấy thông tin từ form
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
@@ -13,18 +14,19 @@ if (isset($_POST['place_order'])) {
     $user_id = $_SESSION['user_id'];
     $order_date = date('Y-m-d H:i:s');
     $payment_method = $_POST['payment'];
+    $_SESSION['payment_method'] = $payment_method;
 
     if (isset($_SESSION['order_id'])) {
         // Cập nhật đơn hàng cũ
         $order_id = $_SESSION['order_id'];
-        $stmt = $conn->prepare("UPDATE orders SET order_cost=?, user_phone=?, user_city=?, user_address=?, order_status=?, order_date=? WHERE order_id=? AND user_id=?");
-        $stmt->bind_param('isssssii', $order_cost, $phone, $city, $address, $order_status, $order_date, $order_id, $user_id);
+        $stmt = $conn->prepare("UPDATE orders SET order_cost=?, user_phone=?, user_city=?, user_address=?, order_status=?, order_date=?, payment_method=? WHERE order_id=? AND user_id=?");
+        $stmt->bind_param('issssssii', $order_cost, $phone, $city, $address, $order_status, $order_date, $payment_method, $order_id, $user_id);
         $stmt->execute();
         // Không thêm lại order_items, chỉ update thông tin giao hàng
     } else {
         // Đặt hàng mới từ giỏ hàng
-        $stmt = $conn->prepare("INSERT INTO orders (order_cost, order_status, user_id, user_phone, user_city, user_address, order_date) VALUES (?,?,?,?,?,?,?)");
-        $stmt->bind_param('isiisss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
+        $stmt = $conn->prepare("INSERT INTO orders (order_cost, order_status, user_id, user_phone, user_city, user_address, order_date, payment_method) VALUES (?,?,?,?,?,?,?,?)");
+        $stmt->bind_param('isiissss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date, $payment_method);
         $stmt->execute();
         $order_id = $stmt->insert_id;
 
@@ -53,7 +55,7 @@ if (isset($_POST['place_order'])) {
         header('Location: ../payment.php');
         exit();
     } elseif ($payment_method === 'cod') {
-        header('Location: ../giaodiencod.html');
+        header('Location: ../shipcod.php');
         exit();
     } else {
         header('Location: ../checkout.php?error=Phương thức thanh toán không hợp lệ!');

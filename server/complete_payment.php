@@ -23,8 +23,8 @@
             $stmt1->execute();
 
             //go to user account
-
-            header("location: ../account.php?payment_massage=paid successfully, thanks for shopping with us");
+            header("location: ../shipcod.php?order_id=".$order_id);
+            exit;
     }else{
         header("location: index.php");
         exit();

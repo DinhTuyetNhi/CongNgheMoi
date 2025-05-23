@@ -56,6 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
     // Bạn có thể sử dụng $order_id và $order_status để xử lý logic thanh toán
     // Ví dụ: hiển thị thông tin đơn hàng hoặc cập nhật trạng thái đơn hàng
 }
+
+// Sau khi khách chọn phương thức thanh toán và nhấn thanh toán
+if (isset($_POST['payment'])) {
+    $_SESSION['payment_method'] = $_POST['payment'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
